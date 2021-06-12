@@ -1,0 +1,25 @@
+version: "3"
+services:
+  git-synchronizer:
+    build:
+      context: ./git-synchronizer/
+    image: git-synchronizer
+    container_name: git-synchronizer
+    hostname: git-synchronizer
+    dns: 8.8.8.8
+    tty: true
+    stdin_open: true
+    ports:
+      - "50000:50000"
+    environment:
+      - TZ=Asia/Tokyo
+      - LANG=ja_JP.utf8
+    networks:
+      - git-synchronizer
+    volumes:
+      - ./git-synchronizer/config:/app/config:ro
+      - ./git-synchronizer/log:/app/log
+      - ../../git-synchronizer:/app/git-synchronizer:ro
+networks:
+  git-synchronizer:
+
