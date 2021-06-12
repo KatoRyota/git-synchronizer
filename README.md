@@ -2,6 +2,32 @@
 
 git-synchronizerは、複数のGitリポジトリを、一括で同期する為の、コマンドラインツールです。
 
+以下は実行結果の一例です。
+
+```text
+root@git-synchronizer:/app# python2.7 -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
+[db-client                        ] Succeeded synchronization. - - - 1/3
+[git-synchronizer                 ] Succeeded synchronization. - - - 2/3
+[experimental-tools               ] Succeeded synchronization. - - - 3/3
+-------------------------------------------------------------------------------
+【結果レポート】
+
+全てのリポジトリの同期に成功しました。
+以下のディレクトリ配下のリポジトリの同期を行いました。
+/root/repo/KatoRyota
+
+--- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
+　　・なし
+
+--- 同期に失敗したリポジトリ ---
+　　・なし
+
+--- 同期に成功したリポジトリ ---
+　　・db-client
+　　・git-synchronizer
+　　・experimental-tools
+```
+
 # Requirement
 
 * python 2.6 <= 2.7
