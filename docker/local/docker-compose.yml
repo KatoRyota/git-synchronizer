@@ -22,4 +22,3 @@ services:
       - ../../git-synchronizer:/app/git-synchronizer:ro
 networks:
   git-synchronizer:
-
