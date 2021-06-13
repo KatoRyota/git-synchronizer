@@ -25,23 +25,13 @@ cd ~/repo/
 git clone https://github.com/KatoRyota/git-synchronizer.git
 ```
 
-## Docker上のリソースを全て削除
-
-以下のコマンドを実行すると、Docker Compose管理外のものも削除されるので注意。
-
-```shell
-# [Ubuntu]
-docker container stop `docker ps -q`
-docker system prune -a --volumes
-```
-
 ## Dockerコンテナの作成/起動
 
 ```shell
 # [Ubuntu]
 cd ~/repo/git-synchronizer/docker/local/
-docker-compose up --build > stdout 2>&1 < /dev/null &
-tail -f stdout
+docker-compose up --build -d
+docker-compose logs -f
 ```
 
 ## 動作確認
@@ -74,7 +64,8 @@ docker-compose down
 ```shell
 # [Ubuntu]
 cd ${DOCKER_COMPOSE_YML_DIR}
-docker-compose up --build > stdout 2>&1 < /dev/null &
+docker-compose up --build -d
+docker-compose logs -f
 ```
 
 ## Dockerコンテナを一括で停止/削除したい
@@ -85,19 +76,12 @@ cd ${DOCKER_COMPOSE_YML_DIR}
 docker-compose down
 ```
 
-## Docker上のリソースを一括で削除したい
+## Dockerリソースを一括で削除したい
 
 ```shell
 # [Ubuntu]
 docker container stop `docker ps -q`
 docker system prune -a --volumes
-```
-
-## Dockerコンテナにログインしたい
-
-```shell
-# [Ubuntu]
-docker container exec -it ${CONTAINER_NAME} /bin/bash
 ```
 
 ## Dockerコンテナの一覧を確認したい
@@ -128,7 +112,21 @@ docker network ls
 docker volume ls
 ```
 
-## Dockerコンテナの状態を確認したい
+## Dockerコンテナでインタラクティブシェルを起動したい
+
+```shell
+# [Ubuntu]
+docker container exec -it ${CONTAINER_NAME} /bin/bash
+```
+
+## Dockerコンテナのログを確認したい
+
+```shell
+# [Ubuntu]
+docker container logs -f ${CONTAINER_NAME}
+```
+
+## Dockerコンテナの詳細を確認したい
 
 ```shell
 # [Ubuntu]
