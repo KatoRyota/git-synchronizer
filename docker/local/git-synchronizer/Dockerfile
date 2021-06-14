@@ -19,7 +19,9 @@ RUN \
     locale-gen ja_JP.UTF-8 && \
     # ---- ユーザーとグループの追加----
     groupadd -g 61000 docker && \
-    useradd  -m -g docker -u 61000 docker
+    useradd  -m -g docker -u 61000 docker && \
+    # ---- ディレクトリの所有者の変更----
+    chown -R docker:docker /app/log
 
 USER docker
 WORKDIR /home/docker/
