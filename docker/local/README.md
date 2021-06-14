@@ -30,8 +30,8 @@ git clone https://github.com/KatoRyota/git-synchronizer.git
 ```shell
 # [Ubuntu]
 cd ~/repo/git-synchronizer/docker/local/
-docker-compose up --build -d
-docker-compose logs -f
+docker-compose up --build > stdout 2>&1 < /dev/null &
+tail -f stdout
 ```
 
 ## 動作確認
