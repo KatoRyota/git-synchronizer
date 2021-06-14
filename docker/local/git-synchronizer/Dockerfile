@@ -2,8 +2,6 @@ FROM ubuntu:18.04
 
 WORKDIR /root/
 
-VOLUME ["/app/log"]
-
 RUN \
     # ---- パッケージのインストール ----
     apt update && \
@@ -21,9 +19,7 @@ RUN \
     locale-gen ja_JP.UTF-8 && \
     # ---- ユーザーとグループの追加 ----
     groupadd -g 61000 docker && \
-    useradd  -m -g docker -u 61000 docker && \
-    # ---- ディレクトリの作成 ----
-    chown -R docker:docker /app/log
+    useradd  -m -g docker -u 61000 docker
 
 USER docker
 WORKDIR /home/docker/
@@ -32,5 +28,10 @@ ENV TZ="Asia/Tokyo" \
     LANG="ja_JP.UTF-8" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8"
+
+# ---- アプリケーションの配置 ----
+COPY ../../../docker/local/git-synchronizer/config /app/config
+COPY ../../../git-synchronizer /app/git-synchronizer
+# RUN chown -R docker:docker /app/log
 
 CMD ["/bin/bash"]

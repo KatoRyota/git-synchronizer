@@ -16,9 +16,5 @@ services:
       - LANG=ja_JP.utf8
     networks:
       - git-synchronizer
-    volumes:
-      - ./git-synchronizer/config:/app/config:ro
-      - ./git-synchronizer/log:/app/log
-      - ../../git-synchronizer:/app/git-synchronizer:ro
 networks:
   git-synchronizer:
