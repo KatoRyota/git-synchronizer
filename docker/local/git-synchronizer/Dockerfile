@@ -22,7 +22,9 @@ RUN \
     useradd  -m -g docker -u 61000 docker && \
     # ---- ディレクトリの作成 ----
     mkdir -vp /app/log && \
-    chown -R docker:docker /app/log
+    ls -lhF /app/ && \
+    chown -R docker:docker /app/log && \
+    ls -lhF /app/
 
 USER docker
 WORKDIR /home/docker/
