@@ -1,7 +1,5 @@
 FROM ubuntu:18.04
 
-WORKDIR /root/
-
 RUN \
     # ---- パッケージのインストール ----
     apt update && \
@@ -22,7 +20,6 @@ RUN \
     useradd -r -g docker docker
 
 USER docker
-WORKDIR /home/docker/
 
 ENV TZ="Asia/Tokyo" \
     LANG="ja_JP.UTF-8" \
@@ -32,5 +29,7 @@ ENV TZ="Asia/Tokyo" \
 # ---- アプリケーションの配置 ----
 COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
 COPY --chown=docker:docker git-synchronizer /app/git-synchronizer
+
+WORKDIR /app/
 
 CMD ["/bin/bash"]
