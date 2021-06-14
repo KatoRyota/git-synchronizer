@@ -19,6 +19,7 @@ RUN \
     groupadd -r docker && \
     useradd -r -g docker docker
 
+# ---- アプリケーションの配置 ----
 USER docker
 
 ENV TZ="Asia/Tokyo" \
@@ -26,7 +27,6 @@ ENV TZ="Asia/Tokyo" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8"
 
-# ---- アプリケーションの配置 ----
 COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
 COPY --chown=docker:docker git-synchronizer /app/git-synchronizer
 
