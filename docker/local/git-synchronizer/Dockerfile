@@ -18,8 +18,8 @@ RUN \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     locale-gen ja_JP.UTF-8 && \
     # ---- ユーザーとグループの追加 ----
-    groupadd -g 61000 docker && \
-    useradd  -m -g docker -u 61000 docker
+    groupadd -r docker && \
+    useradd -r -g docker docker
 
 USER docker
 WORKDIR /home/docker/
