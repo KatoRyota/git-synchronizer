@@ -19,7 +19,7 @@ RUN \
     locale-gen ja_JP.UTF-8 && \
     # ---- ユーザーとグループの追加 ----
     groupadd -g 61000 docker && \
-    useradd  -m -g docker -u 61000 docker && \
+    useradd  -m -g docker -u 61000 docker
 
 USER docker
 WORKDIR /home/docker/
