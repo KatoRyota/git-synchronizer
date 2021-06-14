@@ -30,8 +30,8 @@ ENV TZ="Asia/Tokyo" \
     LC_ALL="ja_JP.UTF-8"
 
 # ---- アプリケーションの配置 ----
-COPY ../../docker/local/git-synchronizer/config /app/config
-COPY ../../git-synchronizer /app/git-synchronizer
+COPY docker/local/git-synchronizer/config /app/config
+COPY git-synchronizer /app/git-synchronizer
 # RUN chown -R docker:docker /app/log
 
 CMD ["/bin/bash"]

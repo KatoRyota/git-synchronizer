@@ -2,7 +2,8 @@ version: "3"
 services:
   git-synchronizer:
     build:
-      context: ./git-synchronizer/
+      context: ../../
+      dockerfile: ./docker/local/git-synchronizer/Dockerfile
     image: git-synchronizer
     container_name: git-synchronizer
     hostname: git-synchronizer
