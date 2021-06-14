@@ -2,6 +2,8 @@ FROM ubuntu:18.04
 
 WORKDIR /root/
 
+VOLUME ["/app/log"]
+
 RUN \
     # ---- パッケージのインストール ----
     apt update && \
@@ -21,10 +23,7 @@ RUN \
     groupadd -g 61000 docker && \
     useradd  -m -g docker -u 61000 docker && \
     # ---- ディレクトリの作成 ----
-    mkdir -vp /app/log && \
-    ls -lhF /app/ && \
-    chown -R docker:docker /app/log && \
-    ls -lhF /app/
+    chown -R docker:docker /app/log
 
 USER docker
 WORKDIR /home/docker/
