@@ -19,14 +19,13 @@ RUN \
     locale-gen ja_JP.UTF-8 && \
     # ---- ユーザーとグループの追加 ----
     groupadd -g 61000 docker && \
-    useradd  -m -g docker -u 61000 docker
+    useradd  -m -g docker -u 61000 docker && \
+    # ---- ディレクトリの作成 ----
+    mkdir -vp /app/log && \
+    chown -R docker:docker /app/log
 
 USER docker
 WORKDIR /home/docker/
-
-# ---- ディレクトリの作成 ----
-RUN mkdir -vp /app/log && \
-    chown -R docker:docker /app/log
 
 ENV TZ="Asia/Tokyo" \
     LANG="ja_JP.UTF-8" \
