@@ -16,13 +16,17 @@ RUN \
     # ---- タイムゾーンとロケールの設定 ----
     ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
-    locale-gen ja_JP.UTF-8
+    locale-gen ja_JP.UTF-8 && \
+    # ---- ユーザーとグループの追加----
+    groupadd -g 61000 docker && \
+    useradd  -m -g docker -u 61000 docker
+
+USER docker
+WORKDIR /home/docker/
 
 ENV TZ="Asia/Tokyo" \
     LANG="ja_JP.UTF-8" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8"
-
-WORKDIR /app/
 
 CMD ["/bin/bash"]
