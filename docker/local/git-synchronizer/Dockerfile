@@ -27,8 +27,8 @@ ENV TZ="Asia/Tokyo" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8"
 
-COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
 COPY --chown=docker:docker git-synchronizer /app/git-synchronizer
+COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
 
 # ---- アプリケーションの起動 ----
 WORKDIR /app/
