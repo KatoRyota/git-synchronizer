@@ -30,6 +30,6 @@ ENV TZ="Asia/Tokyo" \
 COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
 COPY --chown=docker:docker git-synchronizer /app/git-synchronizer
 
+# ---- アプリケーションの起動 ----
 WORKDIR /app/
-
 CMD ["/bin/bash"]
