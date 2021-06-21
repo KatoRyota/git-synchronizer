@@ -42,9 +42,9 @@ docker container exec -it git-synchronizer /bin/bash
 
 export PYTHONIOENCODING=utf-8
 cd /app/
-mkdir -vp /app/repo
+mkdir -vp ~/repo
 
-python2.7 -m git-synchronizer -f config/repo-my-project.json -d /app/repo/
+python2.7 -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
 
 exit
 ```

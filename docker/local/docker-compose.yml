@@ -3,7 +3,7 @@ services:
   git-synchronizer:
     build:
       context: ../../
-      dockerfile: ./docker/local/git-synchronizer/Dockerfile
+      dockerfile: docker/local/git-synchronizer/Dockerfile
     image: git-synchronizer
     container_name: git-synchronizer
     hostname: git-synchronizer
