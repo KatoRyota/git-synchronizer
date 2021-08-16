@@ -159,7 +159,7 @@ class GitSynchronizer(object):
                 raise StandardError(u"同期対象リポジトリファイルの内容が不正です。-> " + context.repo_file)
 
             # ---- gitコマンドの実行と、レポート出力 ----
-            Synchronizer(config, context).execute()
+            Synchronizer(context).execute()
 
             if not context.check_synchronize():
                 raise StandardError(u"リポジトリの同期に失敗しました。")
