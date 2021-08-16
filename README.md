@@ -37,7 +37,7 @@ root@git-synchronizer:/app# python -m git-synchronizer -f config/repo-my-project
 
 以下をご確認下さい。
 
-* [docker/local/README.md](docker/local/README.md)
+* [README.md](docker/local/README.md)
 
 # Installation
 
@@ -56,10 +56,16 @@ git clone https://github.com/KatoRyota/git-synchronizer.git
 
 # Usage
 
-設定ファイル(`application.conf`)に、Gitリポジトリの接続先情報を設定して下さい。  
+プロファイル毎 (`dbclient/config/${PROFILE}/`) の設定ファイル (`application.conf`) に、  
+Gitリポジトリの接続先情報 (`repository`セクション) を記載して下さい。  
+設定ファイルは、デフォルトで`dbclient/config/default/`ディレクトリ配下のものを読み込みます。  
+プロファイルは、`dbclient/config/`ディレクトリ直下に、任意の名前を付けて、追加することが可能です。  
+プロファイルは、環境変数[`GITSYNCHRONIZER_PROFILE`]に、  
+`dbclient/config/`ディレクトリ直下の、ディレクトリ名をセットすることで変更可能です。
+
 以下を参考にして、同期対象リポジトリファイルを作成して下さい。
 
-* [config/repo-my-project.json](config/repo-my-project.json)
+* [repo-my-project.json](gitsynchronizer/config/default/repo-my-project.json)
 
 ターミナルのエンコーディングに、utf-8を設定して下さい。  
 ターミナルの文字フォントに、MSゴシックなどの等幅フォントを設定して下さい。  
@@ -70,7 +76,15 @@ git clone https://github.com/KatoRyota/git-synchronizer.git
 ```shell
 cd ${APP_ROOT_DIR}
 
-python -m gitsynchronizer -f config/repo-my-project.json -d ~/repo/
+python -m gitsynchronizer -f gitsynchronizer/config/default/repo-my-project.json -d ~/repo/
+```
+
+上記コマンドがエラーになる場合は、以下を試してみて下さい。
+
+```shell
+cd ${APP_ROOT_DIR}
+
+python -m gitsynchronizer.__main__ -f gitsynchronizer/config/default/repo-my-project.json -d ~/repo/
 ```
 
 指定可能なオプションは、以下のコマンドでご確認下さい。
