@@ -22,46 +22,48 @@ class Printer(object):
     def execute(self):
         # type: () -> None
 
+        context = self.__context
+
         message = ""
         message += "-------------------------------------------------------------------------------\n"
         message += u"【結果レポート】\n"
         message += "\n"
 
-        if not self.__context.fail_repositories:
+        if not context.fail_repositories:
             message += u"全てのリポジトリの同期に成功しました。\n"
         else:
             message += u"同期に失敗したリポジトリがあります。\n"
 
         message += u"以下のディレクトリ配下のリポジトリの同期を行いました。\n"
-        message += os.path.abspath(self.__context.project_dir) + "\n"
+        message += os.path.abspath(context.project_dir) + "\n"
         message += "\n"
 
         message += u"--- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---\n"
 
-        if not self.__context.stash_repositories:
+        if not context.stash_repositories:
             message += u"　　・なし\n"
         else:
-            for stash_repository in self.__context.stash_repositories:  # type: str
+            for stash_repository in context.stash_repositories:  # type: str
                 message += u"　　・" + stash_repository + "\n"
 
         message += "\n"
 
         message += u"--- 同期に失敗したリポジトリ ---\n"
 
-        if not self.__context.fail_repositories:
+        if not context.fail_repositories:
             message += u"　　・なし\n"
         else:
-            for fail_repository in self.__context.fail_repositories:  # type: str
+            for fail_repository in context.fail_repositories:  # type: str
                 message += u"　　・" + fail_repository + "\n"
 
         message += "\n"
 
         message += u"--- 同期に成功したリポジトリ ---\n"
 
-        if not self.__context.success_repositories:
+        if not context.success_repositories:
             message += u"　　・なし\n"
         else:
-            for success_repository in self.__context.success_repositories:  # type: str
+            for success_repository in context.success_repositories:  # type: str
                 message += u"　　・" + success_repository + "\n"
 
         print message.encode("utf-8")
