@@ -78,7 +78,6 @@ class GitSynchronizer(object):
 
         logger = self.__logger
         context = self.__context
-        config = self.__context.config
         option_parser = OptionParser()
 
         # noinspection PyBroadException
