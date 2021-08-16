@@ -5,7 +5,7 @@ git-synchronizerは、複数のGitリポジトリを、一括で同期する為�
 以下は実行結果の一例です。
 
 ```text
-root@git-synchronizer:/app# python2.7 -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
+root@git-synchronizer:/app# python -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
 [db-client                        ] Succeeded synchronization. - - - 1/3
 [git-synchronizer                 ] Succeeded synchronization. - - - 2/3
 [experimental-tools               ] Succeeded synchronization. - - - 3/3
@@ -70,11 +70,11 @@ git clone https://github.com/KatoRyota/git-synchronizer.git
 ```shell
 cd ${APP_ROOT_DIR}
 
-python2.7 -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
+python -m gitsynchronizer -f config/repo-my-project.json -d ~/repo/
 ```
 
 指定可能なオプションは、以下のコマンドでご確認下さい。
 
 ```shell
-python2.7 -m git-synchronizer -h
+python -m gitsynchronizer -h
 ```

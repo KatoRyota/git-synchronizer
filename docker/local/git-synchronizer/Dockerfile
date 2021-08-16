@@ -8,7 +8,8 @@ RUN \
         locales \
         less \
         python2.7 \
-        git && \
+        git \
+        curl && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     # ---- タイムゾーンとロケールの設定 ----
@@ -18,19 +19,23 @@ RUN \
     locale-gen && \
     # ---- ユーザーとグループの追加 ----
     groupadd -g 61000 docker && \
-    useradd -m -g docker -u 61000 docker
+    useradd -m -g docker -u 61000 docker && \
+    # ---- pipのインストール ----
+    curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py && \
+    python2.7 get-pip.py && \
+    python2.7 -m pip install --upgrade pip setuptools
 
-# ---- ユーザーの変更 ----
+# ---- アプリケーションのデプロイ ----
 USER docker
 
 ENV TZ="Asia/Tokyo" \
     LANG="ja_JP.UTF-8" \
     LANGUAGE="ja_JP:ja" \
-    LC_ALL="ja_JP.UTF-8"
+    LC_ALL="ja_JP.UTF-8" \
+    PATH=/home/docker/.local/bin:${PATH}
 
-# ---- アプリケーションの配置と起動 ----
-COPY --chown=docker:docker git-synchronizer                     /app/git-synchronizer
-COPY --chown=docker:docker docker/local/git-synchronizer/config /app/config
+COPY --chown=docker:docker . /app/git-synchronizer
 
-WORKDIR /app/
+WORKDIR /app/git-synchronizer
+
 CMD ["/bin/bash"]
