@@ -54,13 +54,7 @@ class TestGitSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect(
                 (("gitsynchronizer/config/default", True), ("gitsynchronizer/log", False)))
 
-            json_loads.return_value = {
-                "KatoRyota": [
-                    "db-client",
-                    "git-synchronizer",
-                    "experimental-tools"
-                ]
-            }
+            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
