@@ -8,8 +8,8 @@ RUN \
         locales \
         less \
         python2.7 \
-        git \
-        curl && \
+        curl \
+        git && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     # ---- タイムゾーンとロケールの設定 ----
@@ -36,6 +36,9 @@ ENV TZ="Asia/Tokyo" \
 
 COPY --chown=docker:docker . /app/git-synchronizer
 
-WORKDIR /app/git-synchronizer
+WORKDIR /app/git-synchronizer/
+
+RUN python2.7 setup.py bdist_wheel && \
+    python2.7 -m pip install --user dist/git_synchronizer-0.0.1-py2-none-any.whl
 
 CMD ["/bin/bash"]
