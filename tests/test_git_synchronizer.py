@@ -26,12 +26,12 @@ class TestGitSynchronizer(TestCase):
 
         # ---- ケース1 ----
         with mock.patch("__builtin__.reload"), \
+                mock.patch("__builtin__.open"), \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
                 mock.patch("logging.config.fileConfig"), \
                 mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
-                mock.patch("__builtin__.open"), \
                 mock.patch("json.loads") as json_loads, \
                 mock.patch("gitsynchronizer.context.context.Context.check_application_initialize"
                            ) as context_check_application_initialize, \
