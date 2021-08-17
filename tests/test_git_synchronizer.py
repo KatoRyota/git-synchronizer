@@ -99,12 +99,12 @@ class TestGitSynchronizer(TestCase):
             self.assertIn(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")
-            self.assertIn(expected, actual)
+            expected = os.path.abspath("gitsynchronizer/config/default/repo-my-project.json")
+            self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.join("home", "docker", "repo")
-            self.assertIn(expected, actual)
+            expected = os.path.abspath("/home/docker/repo")
+            self.assertEqual(expected, actual)
 
             actual = context.project
             expected = "KatoRyota"
@@ -115,8 +115,8 @@ class TestGitSynchronizer(TestCase):
             self.assertListEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.join("home", "docker", "repo", "KatoRyota")
-            self.assertIn(expected, actual)
+            expected = os.path.abspath("/home/docker/repo/KatoRyota")
+            self.assertEqual(expected, actual)
 
             makedirs.assert_called_once()
             context_check_application_initialize.assert_called_once()
