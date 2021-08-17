@@ -114,6 +114,8 @@ class Context(object):
             return False
         if type(self.project_dir) is not unicode:
             return False
+        if not os.path.isdir(self.project_dir):
+            return False
 
         return True
 
