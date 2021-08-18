@@ -28,6 +28,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
                 mock.patch("logging.config.fileConfig"), \
@@ -66,6 +67,8 @@ class TestGitSynchronizer(TestCase):
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
+
+            stderr.encoding = "utf-8"
 
             # 実行
             git_synchronizer = GitSynchronizer()
@@ -134,6 +137,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース2.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
                 mock.patch("logging.config.fileConfig"), \
@@ -172,6 +176,8 @@ class TestGitSynchronizer(TestCase):
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
+
+            stderr.encoding = "utf-8"
 
             # 実行
             with self.assertRaises(StandardError) as e:
