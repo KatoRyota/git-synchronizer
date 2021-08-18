@@ -18,7 +18,11 @@ class TestPrinter(TestCase):
         # ---- ケース1 ----
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
             # 前提条件
-            context = self._default_context()
+            context = Context()
+            context.project_dir = os.path.join("dst_dir", "project")
+            context.success_repositories = ["db-client", "git-synchronizer", "experimental-tools"]
+            context.fail_repositories = []
+            context.stash_repositories = []
 
             # 実行
             Printer(context).execute()
@@ -47,16 +51,76 @@ class TestPrinter(TestCase):
 '''
             self.assertRegexpMatches(actual, expected)
 
-    @staticmethod
-    def _default_context():
-        # type: () -> Context
+        # ---- ケース2.1 ----
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout:
+            # 前提条件
+            context = Context()
+            context.project_dir = os.path.join("dst_dir", "project")
+            context.success_repositories = []
+            context.fail_repositories = ["db-client", "git-synchronizer", "experimental-tools"]
+            context.stash_repositories = []
 
-        context = Context()
-        context.project_dir = os.path.join("dst_dir", "project")
-        context.success_repositories = ["db-client", "git-synchronizer", "experimental-tools"]
-        context.fail_repositories = []
-        context.stash_repositories = []
-        return context
+            # 実行
+            Printer(context).execute()
+
+            # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u'''\
+-------------------------------------------------------------------------------
+【結果レポート】
+
+同期に失敗したリポジトリがあります。
+以下のディレクトリ配下のリポジトリの同期を行いました。
+.*dst_dir.project
+
+--- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
+　　・なし
+
+--- 同期に失敗したリポジトリ ---
+　　・db-client
+　　・git-synchronizer
+　　・experimental-tools
+
+--- 同期に成功したリポジトリ ---
+　　・なし
+
+'''
+            self.assertRegexpMatches(actual, expected)
+
+        # ---- ケース3.1 ----
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout:
+            # 前提条件
+            context = Context()
+            context.project_dir = os.path.join("dst_dir", "project")
+            context.success_repositories = ["db-client", "git-synchronizer"]
+            context.fail_repositories = ["experimental-tools"]
+            context.stash_repositories = []
+
+            # 実行
+            Printer(context).execute()
+
+            # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u'''\
+-------------------------------------------------------------------------------
+【結果レポート】
+
+同期に失敗したリポジトリがあります。
+以下のディレクトリ配下のリポジトリの同期を行いました。
+.*dst_dir.project
+
+--- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
+　　・なし
+
+--- 同期に失敗したリポジトリ ---
+　　・experimental-tools
+
+--- 同期に成功したリポジトリ ---
+　　・db-client
+　　・git-synchronizer
+
+'''
+            self.assertRegexpMatches(actual, expected)
 
 
 if __name__ == "__main__":
