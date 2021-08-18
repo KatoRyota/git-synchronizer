@@ -52,7 +52,8 @@ class TestGitSynchronizer(TestCase):
                 (("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect(
-                (("gitsynchronizer/config/default", True), ("gitsynchronizer/log", False)))
+                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -60,14 +61,15 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
-            sys.argv = ["git_synchronizer.py", "-f", "gitsynchronizer/config/default/repo-my-project.json",
-                        "-d", "/home/docker/repo/"]
+            sys.argv = ["git_synchronizer.py",
+                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join("home", "docker", "repo")]
 
             # 実行
-            db_client = GitSynchronizer()
-            db_client.execute()
+            git_synchronizer = GitSynchronizer()
+            git_synchronizer.execute()
             # noinspection PyUnresolvedReferences
-            context = db_client._GitSynchronizer__context
+            context = git_synchronizer._GitSynchronizer__context
 
             # 検証
             actual = os.environ.get("GITSYNCHRONIZER_PROFILE")
@@ -75,7 +77,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = os.environ.get("LOG_DIR")
-            expected = "gitsynchronizer/log"
+            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
@@ -83,7 +85,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.root_dir
-            expected = "gitsynchronizer"
+            expected = os.path.join("git-synchronizer", "gitsynchronizer")
             self.assertIn(expected, actual)
 
             actual = context.profile
@@ -91,19 +93,19 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.config_dir
-            expected = "gitsynchronizer/config/default"
+            expected = os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")
             self.assertIn(expected, actual)
 
             actual = context.log_dir
-            expected = "gitsynchronizer/log"
+            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.abspath("gitsynchronizer/config/default/repo-my-project.json")
+            expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
             self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.abspath("/home/docker/repo")
+            expected = os.path.abspath(os.path.join("home", "docker", "repo"))
             self.assertEqual(expected, actual)
 
             actual = context.project
@@ -115,7 +117,7 @@ class TestGitSynchronizer(TestCase):
             self.assertListEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.abspath("/home/docker/repo/KatoRyota")
+            expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
             self.assertEqual(expected, actual)
 
             makedirs.assert_called_once()
