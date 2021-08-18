@@ -2,6 +2,7 @@
 import os
 import sys
 import unittest
+from io import BytesIO
 from unittest import TestCase
 
 import mock
@@ -185,6 +186,70 @@ class TestGitSynchronizer(TestCase):
             makedirs.assert_called_once()
             context_check_application_initialize.assert_called_once()
             context_check_option_parse.assert_not_called()
+            json_loads.assert_not_called()
+            context_check_repo_file_load.assert_not_called()
+            synchronizer_execute.assert_not_called()
+            context_check_synchronize.assert_not_called()
+            printer_execute.assert_not_called()
+
+        # ---- ケース3.1 ----
+        with mock.patch("__builtin__.reload"), \
+                mock.patch("__builtin__.open"), \
+                mock.patch("sys.stderr", new=BytesIO()) as stderr, \
+                mock.patch("ConfigParser.RawConfigParser.read"), \
+                mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
+                mock.patch("logging.config.fileConfig"), \
+                mock.patch("os.path.isdir") as isdir, \
+                mock.patch("os.makedirs") as makedirs, \
+                mock.patch("json.loads") as json_loads, \
+                mock.patch("gitsynchronizer.context.context.Context.check_application_initialize"
+                           ) as context_check_application_initialize, \
+                mock.patch("gitsynchronizer.context.context.Context.check_option_parse"
+                           ) as context_check_option_parse, \
+                mock.patch("gitsynchronizer.context.context.Context.check_repo_file_load"
+                           ) as context_check_repo_file_load, \
+                mock.patch("gitsynchronizer.context.context.Context.check_synchronize") as context_check_synchronize, \
+                mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer.execute") as synchronizer_execute, \
+                mock.patch("gitsynchronizer.printer.printer.Printer.execute") as printer_execute:
+
+            # 前提条件
+            context_check_application_initialize.return_value = True
+            context_check_option_parse.return_value = False
+            context_check_repo_file_load.return_value = True
+            context_check_synchronize.return_value = True
+
+            config_parser_get.side_effect = self._config_parser_get_side_effect(
+                (("logging", "log_dir", ""),))
+
+            isdir.side_effect = self._isdir_side_effect(
+                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+
+            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+
+            if os.environ.get("GITSYNCHRONIZER_PROFILE"):
+                del os.environ["GITSYNCHRONIZER_PROFILE"]
+
+            os.environ["PYTHONIOENCODING"] = "utf-8"
+            sys.argv = ["git_synchronizer.py",
+                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join("home", "docker", "repo")]
+
+            stderr.encoding = "utf-8"
+
+            # 実行
+            with self.assertRaises(SystemExit):
+                git_synchronizer = GitSynchronizer()
+                git_synchronizer.execute()
+
+            # 検証
+            actual = stderr.getvalue().decode("utf-8")
+            expected = u"起動オプションが不正です。"
+            self.assertRegexpMatches(actual, expected)
+
+            makedirs.assert_called_once()
+            context_check_application_initialize.assert_called_once()
+            context_check_option_parse.assert_called_once()
             json_loads.assert_not_called()
             context_check_repo_file_load.assert_not_called()
             synchronizer_execute.assert_not_called()
