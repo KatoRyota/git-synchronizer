@@ -250,7 +250,7 @@ class TestGitSynchronizer(TestCase):
 
             # 検証
             actual = stderr.getvalue().decode("utf-8")
-            expected = u"起動オプションが不正です。"
+            expected = u"起動オプションが不正です。\n"
             self.assertRegexpMatches(actual, expected)
 
             makedirs.assert_called_once()
