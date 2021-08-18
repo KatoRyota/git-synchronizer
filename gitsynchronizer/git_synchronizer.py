@@ -57,6 +57,8 @@ class GitSynchronizer(object):
         if not context.log_dir:
             context.log_dir = os.path.join(context.root_dir, "log")
 
+        context.log_dir = os.path.abspath(context.log_dir)
+
         if not os.path.isdir(context.log_dir):
             os.makedirs(context.log_dir)
 
