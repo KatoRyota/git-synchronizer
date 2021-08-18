@@ -52,7 +52,7 @@ class GitSynchronizer(object):
         config.read(os.path.join(context.config_dir, "application.conf"))
 
         # ロギング設定ファイルの読み込み
-        context.log_dir = os.path.abspath(config.get("logging", "log_dir"))
+        context.log_dir = config.get("logging", "log_dir")
 
         if not context.log_dir:
             context.log_dir = os.path.join(context.root_dir, "log")
