@@ -64,6 +64,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -173,6 +174,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -237,6 +239,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -301,6 +304,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -365,6 +369,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -429,6 +434,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -538,6 +544,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -606,6 +613,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -716,6 +724,7 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
 
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
@@ -778,6 +787,7 @@ class TestGitSynchronizer(TestCase):
 
             os.environ["GITSYNCHRONIZER_PROFILE"] = "test"
             os.environ["PYTHONIOENCODING"] = "utf-8"
+
             sys.argv = ["git_synchronizer.py",
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
