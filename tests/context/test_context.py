@@ -184,6 +184,21 @@ class TestContext(TestCase):
 
         return isdir
 
+    @staticmethod
+    def _isfile_side_effect(return_values):
+        # type: (tuple) -> object
+
+        def isdir(inner_path):
+            # type: (str) -> bool
+
+            for return_value_tuple in return_values:  # type: tuple
+                if return_value_tuple[0] == inner_path:
+                    return return_value_tuple[1]
+
+            raise StandardError(u"引数が不正です。")
+
+        return isdir
+
 
 if __name__ == "__main__":
     unittest.main()
