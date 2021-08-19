@@ -186,7 +186,19 @@ class TestContext(TestCase):
             self.assertEqual(expected, actual)
 
     def test_check_repo_file_load(self):
-        self.fail()
+        # type: () -> None
+
+        # ---- ケース1 ----
+        # 前提条件
+        context = Context()
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = ["db-client", "git-synchronizer"]
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = True
+        self.assertEqual(expected, actual)
 
     def test_check_synchronize(self):
         self.fail()
@@ -210,7 +222,7 @@ class TestContext(TestCase):
     def _isfile_side_effect(return_values):
         # type: (tuple) -> object
 
-        def isdir(inner_path):
+        def isfile(inner_path):
             # type: (str) -> bool
 
             for return_value_tuple in return_values:  # type: tuple
@@ -219,7 +231,7 @@ class TestContext(TestCase):
 
             raise StandardError(u"引数が不正です。")
 
-        return isdir
+        return isfile
 
 
 if __name__ == "__main__":
