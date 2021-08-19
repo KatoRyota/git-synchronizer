@@ -1,6 +1,7 @@
 # coding: utf-8
 import os
 import unittest
+from io import BytesIO
 from unittest import TestCase
 
 import mock
@@ -15,7 +16,8 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -52,6 +54,13 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Succeeded synchronization. - - - 1/2
+[git-synchronizer                 ] Succeeded synchronization. - - - 2/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = ["db-client", "git-synchronizer"]
             self.assertListEqual(expected, actual)
@@ -83,7 +92,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -120,6 +130,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = []
             self.assertListEqual(expected, actual)
@@ -151,7 +166,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース3.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -188,6 +204,13 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Succeeded synchronization. - - - 1/2
+[git-synchronizer                 ] Succeeded synchronization. - - - 2/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = ["db-client", "git-synchronizer"]
             self.assertListEqual(expected, actual)
@@ -219,7 +242,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース4.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -256,6 +280,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = []
             self.assertListEqual(expected, actual)
@@ -287,7 +316,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース5.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -324,6 +354,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = []
             self.assertListEqual(expected, actual)
@@ -355,7 +390,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース6.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -392,6 +428,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = []
             self.assertListEqual(expected, actual)
@@ -423,7 +464,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース7.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -460,6 +502,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = []
             self.assertListEqual(expected, actual)
@@ -491,7 +538,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース8.1 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -528,6 +576,13 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Succeeded synchronization. - - - 1/2
+[git-synchronizer                 ] Succeeded synchronization. - - - 2/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = ["db-client", "git-synchronizer"]
             self.assertListEqual(expected, actual)
@@ -559,7 +614,8 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース8.2 ----
-        with mock.patch("os.path.isdir") as isdir, \
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("os.path.isdir") as isdir, \
                 mock.patch("os.makedirs") as makedirs, \
                 mock.patch("os.chdir"), \
                 mock.patch("gitsynchronizer.synchronizer.synchronizer.Synchronizer._git_clone"
@@ -596,6 +652,13 @@ class TestSynchronizer(TestCase):
             Synchronizer(context).execute()
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Succeeded synchronization. - - - 1/2
+[git-synchronizer                 ] Succeeded synchronization. - - - 2/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = context.success_repositories
             expected = ["db-client", "git-synchronizer"]
             self.assertListEqual(expected, actual)
