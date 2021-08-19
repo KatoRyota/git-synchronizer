@@ -28,6 +28,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -69,6 +70,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -138,6 +140,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース2.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -179,6 +182,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -203,6 +207,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース3.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -244,6 +249,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -254,6 +260,12 @@ class TestGitSynchronizer(TestCase):
             # 検証
             actual = stderr.getvalue().decode("utf-8")
             expected = u"起動オプションが不正です。\n"
+            self.assertRegexpMatches(actual, expected)
+
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
+"""
             self.assertRegexpMatches(actual, expected)
 
             makedirs.assert_called_once()
@@ -268,6 +280,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース4.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -309,6 +322,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -333,6 +347,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース5.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -374,6 +389,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -398,6 +414,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース6.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -439,6 +456,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -508,6 +526,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース7.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -549,6 +568,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -577,6 +597,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース7.2 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -618,6 +639,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -687,6 +709,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース8.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -729,6 +752,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -753,6 +777,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース9.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -792,6 +817,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -861,6 +887,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース10.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -903,6 +930,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
@@ -928,6 +956,7 @@ class TestGitSynchronizer(TestCase):
         # ---- ケース10.2 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
+                mock.patch("sys.stdout", new=BytesIO()) as stdout, \
                 mock.patch("sys.stderr", new=BytesIO()) as stderr, \
                 mock.patch("ConfigParser.RawConfigParser.read"), \
                 mock.patch("ConfigParser.ConfigParser.get") as config_parser_get, \
@@ -969,6 +998,7 @@ class TestGitSynchronizer(TestCase):
                         "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
                         "-d", os.path.join("home", "docker", "repo")]
 
+            stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
 
             # 実行
