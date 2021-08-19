@@ -161,7 +161,29 @@ class TestContext(TestCase):
             self.assertEqual(expected, actual)
 
     def test_check_option_parse(self):
-        self.fail()
+        # type: () -> None
+
+        # ---- ケース1 ----
+        with mock.patch("os.path.isdir") as isdir, \
+                mock.patch("os.path.isfile") as isfile:
+            # 前提条件
+            isfile.side_effect = self._isfile_side_effect((
+                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), True),
+            ))
+
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.abspath(os.path.join("home", "docker", "repo")), True),
+            ))
+
+            context = Context()
+            context.repo_file = os.path.abspath(
+                os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
+            context.dst_dir = os.path.abspath(os.path.join("home", "docker", "repo"))
+
+            # 実行 & 検証
+            actual = context.check_option_parse()
+            expected = True
+            self.assertEqual(expected, actual)
 
     def test_check_repo_file_load(self):
         self.fail()
