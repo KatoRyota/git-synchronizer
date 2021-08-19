@@ -55,6 +55,27 @@ class TestContext(TestCase):
             expected = False
             self.assertEqual(expected, actual)
 
+        # ---- ケース2.2 ----
+        with mock.patch("os.path.isdir") as isdir:
+            # 前提条件
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), False),
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
+            ))
+
+            context = Context()
+            context.profile = "default"
+            context.root_dir = os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer"))
+            context.config_dir = os.path.abspath(
+                os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"))
+            context.log_dir = os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log"))
+
+            # 実行 & 検証
+            actual = context.check_application_initialize()
+            expected = False
+            self.assertEqual(expected, actual)
+
     def test_check_option_parse(self):
         self.fail()
 
