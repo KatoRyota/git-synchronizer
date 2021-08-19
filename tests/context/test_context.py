@@ -393,6 +393,63 @@ class TestContext(TestCase):
             expected = False
             self.assertEqual(expected, actual)
 
+        # ---- ケース3.1 ----
+        with mock.patch("os.path.isdir") as isdir:
+            # 前提条件
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
+            ))
+
+            context = Context()
+            context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            context.subprocesses = None
+            context.stash_repositories = []
+            context.success_repositories = ["db-client", "git-synchronizer"]
+            context.fail_repositories = []
+
+            # 実行 & 検証
+            actual = context.check_synchronize()
+            expected = False
+            self.assertEqual(expected, actual)
+
+        # ---- ケース3.2 ----
+        with mock.patch("os.path.isdir") as isdir:
+            # 前提条件
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
+            ))
+
+            context = Context()
+            context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            context.subprocesses = ""
+            context.stash_repositories = []
+            context.success_repositories = ["db-client", "git-synchronizer"]
+            context.fail_repositories = []
+
+            # 実行 & 検証
+            actual = context.check_synchronize()
+            expected = False
+            self.assertEqual(expected, actual)
+
+        # ---- ケース3.3 ----
+        with mock.patch("os.path.isdir") as isdir:
+            # 前提条件
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
+            ))
+
+            context = Context()
+            context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            context.subprocesses = 1
+            context.stash_repositories = []
+            context.success_repositories = ["db-client", "git-synchronizer"]
+            context.fail_repositories = []
+
+            # 実行 & 検証
+            actual = context.check_synchronize()
+            expected = False
+            self.assertEqual(expected, actual)
+
     @staticmethod
     def _isdir_side_effect(return_values):
         # type: (tuple) -> object
