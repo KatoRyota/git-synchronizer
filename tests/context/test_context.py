@@ -236,6 +236,42 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
+        # ---- ケース3.1 ----
+        # 前提条件
+        context = Context()
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = None
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
+        # ---- ケース3.2 ----
+        # 前提条件
+        context = Context()
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = ""
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
+        # ---- ケース3.3 ----
+        # 前提条件
+        context = Context()
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = 1
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
     def test_check_synchronize(self):
         self.fail()
 
