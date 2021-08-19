@@ -779,6 +779,47 @@ class TestSynchronizer(TestCase):
             expected = 1
             self.assertEqual(expected, actual)
 
+    def test__git_fetch(self):
+        # type: () -> None
+
+        # ---- ケース1 ----
+        with mock.patch("subprocess.Popen.__new__") as popen:
+            # 前提条件
+            popen.return_value.returncode = 0
+
+            context = Context()
+
+            # 実行
+            Synchronizer(context)._git_fetch("db-client")
+
+            # 検証
+            actual = len(context.subprocesses)
+            expected = 1
+            self.assertEqual(expected, actual)
+
+            actual = len(context.fail_repositories)
+            expected = 0
+            self.assertEqual(expected, actual)
+
+        # ---- ケース2.1 ----
+        with mock.patch("subprocess.Popen.__new__") as popen:
+            # 前提条件
+            popen.return_value.returncode = 1
+
+            context = Context()
+
+            # 実行
+            Synchronizer(context)._git_fetch("db-client")
+
+            # 検証
+            actual = len(context.subprocesses)
+            expected = 1
+            self.assertEqual(expected, actual)
+
+            actual = len(context.fail_repositories)
+            expected = 1
+            self.assertEqual(expected, actual)
+
     @staticmethod
     def _isdir_side_effect(return_values):
         # type: (tuple) -> object
