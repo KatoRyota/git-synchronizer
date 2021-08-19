@@ -693,11 +693,14 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 0
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
+
             config = context.config
             config.add_section("repository")
             config.set("repository", "uri", "https://github.com/{project}/{repository}.git")
@@ -706,6 +709,11 @@ class TestSynchronizer(TestCase):
             Synchronizer(context)._git_clone("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -715,11 +723,14 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 1
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
+
             config = context.config
             config.add_section("repository")
             config.set("repository", "uri", "https://github.com/{project}/{repository}.git")
@@ -728,6 +739,12 @@ class TestSynchronizer(TestCase):
             Synchronizer(context)._git_clone("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Failed git clone. - - - 1/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -756,16 +773,23 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 0
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_stash_save("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -779,16 +803,24 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 1
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_stash_save("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Failed git stash save. - - - 1/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -805,16 +837,23 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 0
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_checkout("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -824,16 +863,24 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 1
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_checkout("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Failed git checkout. - - - 1/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -846,16 +893,23 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 0
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_fetch("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -865,16 +919,24 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 1
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_fetch("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Failed git fetch. - - - 1/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -887,16 +949,23 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 0
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_merge("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -906,16 +975,24 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
         # ---- ケース2.1 ----
-        with mock.patch("subprocess.Popen.__new__") as popen:
+        with mock.patch("sys.stdout", new=BytesIO()) as stdout, \
+                mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
             popen.return_value.returncode = 1
 
             context = Context()
+            context.repositories = ["db-client", "git-synchronizer"]
 
             # 実行
             Synchronizer(context)._git_merge("db-client")
 
             # 検証
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+[db-client                        ] Failed git merge. - - - 1/2
+"""
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
