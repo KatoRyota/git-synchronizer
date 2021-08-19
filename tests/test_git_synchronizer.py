@@ -52,12 +52,12 @@ class TestGitSynchronizer(TestCase):
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -164,12 +164,12 @@ class TestGitSynchronizer(TestCase):
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -231,12 +231,12 @@ class TestGitSynchronizer(TestCase):
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -304,12 +304,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = False
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -371,12 +371,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = False
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -438,12 +438,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", "log_dir"),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", "log_dir"),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("log_dir"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("log_dir"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -550,12 +550,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), False),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), False),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -621,12 +621,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), True)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), True)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -733,12 +733,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"],
                                        "test": ["test"]}
@@ -801,12 +801,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "test"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "test"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -911,12 +911,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
@@ -980,12 +980,12 @@ Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
             context_check_repo_file_load.return_value = True
             context_check_synchronize.return_value = True
 
-            config_parser_get.side_effect = self._config_parser_get_side_effect(
-                (("logging", "log_dir", ""),))
+            config_parser_get.side_effect = self._config_parser_get_side_effect((
+                ("logging", "log_dir", ""),))
 
-            isdir.side_effect = self._isdir_side_effect(
-                ((os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+            isdir.side_effect = self._isdir_side_effect((
+                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
+                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
 
