@@ -673,6 +673,22 @@ class TestSynchronizer(TestCase):
             expected = 1
             self.assertEqual(expected, actual)
 
+    def test__git_diff_with_working_directory(self):
+        # type: () -> None
+
+        # ---- ケース1 ----
+        with mock.patch("subprocess.Popen.__new__"):
+            # 前提条件
+            context = Context()
+
+            # 実行
+            Synchronizer(context)._git_diff_with_working_directory("db-client")
+
+            # 検証
+            actual = len(context.subprocesses)
+            expected = 1
+            self.assertEqual(expected, actual)
+
     @staticmethod
     def _isdir_side_effect(return_values):
         # type: (tuple) -> object
