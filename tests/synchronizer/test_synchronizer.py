@@ -43,8 +43,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -119,8 +118,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -193,8 +191,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -269,8 +266,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -343,8 +339,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -417,8 +412,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -491,8 +485,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -565,8 +558,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), True),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), False),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
@@ -641,8 +633,7 @@ class TestSynchronizer(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("dst_dir", "project")), False),
                 (os.path.abspath(os.path.join("dst_dir", "project", "db-client")), True),
-                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)
-            ))
+                (os.path.abspath(os.path.join("dst_dir", "project", "git-synchronizer")), False)))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
