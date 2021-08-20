@@ -19,8 +19,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = "default"
@@ -40,8 +39,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), False),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = "default"
@@ -61,8 +59,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), False),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = "default"
@@ -82,8 +79,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), False)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), False)))
 
             context = Context()
             context.profile = "default"
@@ -103,8 +99,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = None
@@ -124,8 +119,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = ""
@@ -145,8 +139,7 @@ class TestContext(TestCase):
             isdir.side_effect = self._isdir_side_effect((
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer")), True),
                 (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")), True),
-                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)
-            ))
+                (os.path.abspath(os.path.join("git-synchronizer", "gitsynchronizer", "log")), True)))
 
             context = Context()
             context.profile = 1
@@ -168,12 +161,10 @@ class TestContext(TestCase):
                 mock.patch("os.path.isfile") as isfile:
             # 前提条件
             isfile.side_effect = self._isfile_side_effect((
-                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), True),
-            ))
+                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), True),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo")), True),))
 
             context = Context()
             context.repo_file = os.path.abspath(
@@ -190,12 +181,11 @@ class TestContext(TestCase):
                 mock.patch("os.path.isfile") as isfile:
             # 前提条件
             isfile.side_effect = self._isfile_side_effect((
-                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), False),
-            ))
+                (os.path.abspath(
+                    os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), False),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo")), True),))
 
             context = Context()
             context.repo_file = os.path.abspath(
@@ -212,12 +202,10 @@ class TestContext(TestCase):
                 mock.patch("os.path.isfile") as isfile:
             # 前提条件
             isfile.side_effect = self._isfile_side_effect((
-                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), True),
-            ))
+                (os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json")), True),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo")), False),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo")), False),))
 
             context = Context()
             context.repo_file = os.path.abspath(
@@ -359,8 +347,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -378,8 +365,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), False),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), False),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -397,8 +383,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -416,8 +401,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -435,8 +419,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -454,8 +437,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -473,8 +455,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -492,8 +473,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -511,8 +491,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -530,8 +509,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -549,8 +527,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -568,8 +545,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -587,8 +563,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -606,8 +581,7 @@ class TestContext(TestCase):
         with mock.patch("os.path.isdir") as isdir:
             # 前提条件
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),
-            ))
+                (os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")), True),))
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
