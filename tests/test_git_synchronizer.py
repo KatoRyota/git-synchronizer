@@ -263,9 +263,7 @@ class TestGitSynchronizer(TestCase):
             self.assertRegexpMatches(actual, expected)
 
             actual = stdout.getvalue().decode("utf-8")
-            expected = u"""\
-Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]
-"""
+            expected = u"Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]\n"
             self.assertRegexpMatches(actual, expected)
 
             makedirs.assert_called_once()
