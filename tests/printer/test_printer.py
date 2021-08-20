@@ -19,7 +19,7 @@ class TestPrinter(TestCase):
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
             # 前提条件
             context = Context()
-            context.project_dir = os.path.join("dst_dir", "project")
+            context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
             context.success_repositories = ["db-client", "git-synchronizer", "experimental-tools"]
             context.fail_repositories = []
             context.stash_repositories = []
@@ -55,7 +55,7 @@ class TestPrinter(TestCase):
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
             # 前提条件
             context = Context()
-            context.project_dir = os.path.join("dst_dir", "project")
+            context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
             context.success_repositories = []
             context.fail_repositories = ["db-client", "git-synchronizer", "experimental-tools"]
             context.stash_repositories = []
@@ -91,7 +91,7 @@ class TestPrinter(TestCase):
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
             # 前提条件
             context = Context()
-            context.project_dir = os.path.join("dst_dir", "project")
+            context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
             context.success_repositories = ["db-client", "git-synchronizer"]
             context.fail_repositories = ["experimental-tools"]
             context.stash_repositories = []
@@ -126,7 +126,7 @@ class TestPrinter(TestCase):
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
             # 前提条件
             context = Context()
-            context.project_dir = os.path.join("dst_dir", "project")
+            context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
             context.success_repositories = ["db-client", "git-synchronizer"]
             context.fail_repositories = ["experimental-tools"]
             context.stash_repositories = ["db-client", "git-synchronizer"]
