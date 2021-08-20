@@ -932,18 +932,18 @@ class TestGitSynchronizer(TestCase):
             stderr.encoding = "utf-8"
 
             # 実行
-            with self.assertRaises(SystemExit):
+            with self.assertRaises(StandardError) as e:
                 git_synchronizer = GitSynchronizer()
                 git_synchronizer.execute()
 
             # 検証
-            actual = stderr.getvalue().decode("utf-8")
-            expected = u"環境変数\\[PYTHONIOENCODING]が不正です。" \
-                       u"PYTHONIOENCODINGには、utf-8がセットされている必要があります。\n"
-            self.assertRegexpMatches(actual, expected)
+            actual = e.exception.message
+            expected = u"環境変数[PYTHONIOENCODING]が不正です。" \
+                       u"PYTHONIOENCODINGには、utf-8がセットされている必要があります。"
+            self.assertEqual(expected, actual)
 
-            makedirs.assert_called_once()
-            context_check_application_initialize.assert_called_once()
+            makedirs.assert_not_called()
+            context_check_application_initialize.assert_not_called()
             context_check_option_parse.assert_not_called()
             json_loads.assert_not_called()
             context_check_repo_file_load.assert_not_called()
@@ -1000,18 +1000,18 @@ class TestGitSynchronizer(TestCase):
             stderr.encoding = "utf-8"
 
             # 実行
-            with self.assertRaises(SystemExit):
+            with self.assertRaises(StandardError) as e:
                 git_synchronizer = GitSynchronizer()
                 git_synchronizer.execute()
 
             # 検証
-            actual = stderr.getvalue().decode("utf-8")
-            expected = u"環境変数\\[PYTHONIOENCODING]が不正です。" \
-                       u"PYTHONIOENCODINGには、utf-8がセットされている必要があります。\n"
-            self.assertRegexpMatches(actual, expected)
+            actual = e.exception.message
+            expected = u"環境変数[PYTHONIOENCODING]が不正です。" \
+                       u"PYTHONIOENCODINGには、utf-8がセットされている必要があります。"
+            self.assertEqual(expected, actual)
 
-            makedirs.assert_called_once()
-            context_check_application_initialize.assert_called_once()
+            makedirs.assert_not_called()
+            context_check_application_initialize.assert_not_called()
             context_check_option_parse.assert_not_called()
             json_loads.assert_not_called()
             context_check_repo_file_load.assert_not_called()
