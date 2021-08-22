@@ -1,7 +1,16 @@
 {
   "KatoRyota": [
-    "db-client",
-    "git-synchronizer",
-    "experimental-tools"
+    {
+      "name": "db-client",
+      "base_branch": "main"
+    },
+    {
+      "name": "git-synchronizer",
+      "base_branch": "main"
+    },
+    {
+      "name": "experimental-tools",
+      "base_branch": "main"
+    }
   ]
 }

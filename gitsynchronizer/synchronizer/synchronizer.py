@@ -35,35 +35,37 @@ class Synchronizer(object):
             logger.debug("Make directories. -> " + context.project_dir)
             os.makedirs(context.project_dir)
 
-        for self.__repository_count, repository in enumerate(context.repositories):  # type: (int, str)
-            repo_dir = os.path.abspath(os.path.join(context.project_dir, repository))
+        for self.__repository_count, repository in enumerate(context.repositories):  # type: (int, dict)
+            repo_name = repository.get("name")
+            repo_base_branch = repository.get("base_branch")
+            repo_dir = os.path.abspath(os.path.join(context.project_dir, repo_name))
 
             if not os.path.isdir(repo_dir):
                 logger.debug("Change directory. -> " + context.project_dir)
                 os.chdir(context.project_dir)
 
-                if not self._git_clone(repository):
+                if not self._git_clone(repo_name):
                     continue
 
             logger.debug("Change directory. -> " + repo_dir)
             os.chdir(repo_dir)
 
-            if self._git_diff_with_working_directory(repository):
-                if not self._git_stash_save(repository):
+            if self._git_diff_with_working_directory(repo_name):
+                if not self._git_stash_save(repo_name):
                     continue
 
-            if not self._git_checkout(repository):
+            if not self._git_checkout(repo_name, repo_base_branch):
                 continue
 
-            if not self._git_fetch(repository):
+            if not self._git_fetch(repo_name):
                 continue
 
-            if not self._git_merge(repository):
+            if not self._git_merge(repo_name):
                 continue
 
-            context.success_repositories.append(repository)
+            context.success_repositories.append(repo_name)
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Succeeded synchronization.", self.__repository_count + 1,
+                self._display_of(repo_name), "Succeeded synchronization.", self.__repository_count + 1,
                 len(context.repositories))
 
         os.chdir(org_cwd)
@@ -136,13 +138,13 @@ class Synchronizer(object):
 
         return process.returncode == 0
 
-    def _git_checkout(self, repository):
-        # type: (str) -> bool
+    def _git_checkout(self, repository, repo_base_branch):
+        # type: (str, str) -> bool
 
         logger = self.__logger
         context = self.__context
 
-        command = ["git", "checkout", "main"]
+        command = ["git", "checkout", repo_base_branch]
         logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
