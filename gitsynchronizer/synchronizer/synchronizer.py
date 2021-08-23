@@ -111,7 +111,7 @@ class Synchronizer(object):
 
         return process.returncode == 1
 
-    def _git_stash_save(self, repository):
+    def _git_stash_save(self, repo_name):
         # type: (str) -> bool
 
         logger = self.__logger
@@ -120,21 +120,21 @@ class Synchronizer(object):
         now = datetime.today().strftime("[%Y-%m-%d %H:%M:%S]")
         stash_message = "%s saved by `git-synchronizer`." % now
         command = ["git", "stash", "save", "-u", stash_message]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         if process.returncode != 0:
-            context.fail_repositories.append(repository)
-            logger.error("[%s] %s" % (self._display_of(repository), "Failed git stash save."))
+            context.fail_repositories.append(repo_name)
+            logger.error("[%s] %s" % (self._display_of(repo_name), "Failed git stash save."))
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Failed git stash save.", self.__repository_count + 1,
+                self._display_of(repo_name), "Failed git stash save.", self.__repository_count + 1,
                 len(context.repositories))
 
-        context.stash_repositories.append(repository)
+        context.stash_repositories.append(repo_name)
 
         return process.returncode == 0
 
