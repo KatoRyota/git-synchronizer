@@ -60,7 +60,7 @@ class Synchronizer(object):
             if not self._git_fetch(repo_name):
                 continue
 
-            if not self._git_merge(repo_name):
+            if not self._git_merge(repo_name, repo_base_branch):
                 continue
 
             context.success_repositories.append(repo_name)
@@ -184,13 +184,13 @@ class Synchronizer(object):
 
         return process.returncode == 0
 
-    def _git_merge(self, repository):
-        # type: (str) -> bool
+    def _git_merge(self, repository, repo_base_branch):
+        # type: (str, str) -> bool
 
         logger = self.__logger
         context = self.__context
 
-        command = ["git", "merge", "origin/main"]
+        command = ["git", "merge", repo_base_branch]
         logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)

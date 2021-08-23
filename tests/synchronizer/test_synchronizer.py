@@ -985,7 +985,7 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_merge("db-client")
+            Synchronizer(context)._git_merge("db-client", "main")
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
@@ -1013,7 +1013,7 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_merge("db-client")
+            Synchronizer(context)._git_merge("db-client", "main")
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
