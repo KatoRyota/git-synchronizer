@@ -110,6 +110,12 @@ class Context(object):
         if type(self.repositories) is not list:
             return False
 
+        for repository in self.repositories:  # type: dict
+            if not repository.get("name"):
+                return False
+            if not repository.get("base_branch"):
+                return False
+
         if not self.project_dir:
             return False
         if type(self.project_dir) is not unicode:
