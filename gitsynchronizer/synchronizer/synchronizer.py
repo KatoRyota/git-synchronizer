@@ -138,25 +138,25 @@ class Synchronizer(object):
 
         return process.returncode == 0
 
-    def _git_checkout(self, repository, repo_base_branch):
+    def _git_checkout(self, repo_name, repo_base_branch):
         # type: (str, str) -> bool
 
         logger = self.__logger
         context = self.__context
 
         command = ["git", "checkout", repo_base_branch]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         if process.returncode != 0:
-            context.fail_repositories.append(repository)
-            logger.error("[%s] %s" % (self._display_of(repository), "Failed git checkout."))
+            context.fail_repositories.append(repo_name)
+            logger.error("[%s] %s" % (self._display_of(repo_name), "Failed git checkout."))
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Failed git checkout.", self.__repository_count + 1,
+                self._display_of(repo_name), "Failed git checkout.", self.__repository_count + 1,
                 len(context.repositories))
 
         return process.returncode == 0
