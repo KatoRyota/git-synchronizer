@@ -161,55 +161,55 @@ class Synchronizer(object):
 
         return process.returncode == 0
 
-    def _git_fetch(self, repository):
+    def _git_fetch(self, repo_name):
         # type: (str) -> bool
 
         logger = self.__logger
         context = self.__context
 
         command = ["git", "fetch", "--all", "-pt"]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         if process.returncode != 0:
-            context.fail_repositories.append(repository)
-            logger.error("[%s] %s" % (self._display_of(repository), "Failed git fetch."))
+            context.fail_repositories.append(repo_name)
+            logger.error("[%s] %s" % (self._display_of(repo_name), "Failed git fetch."))
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Failed git fetch.", self.__repository_count + 1,
+                self._display_of(repo_name), "Failed git fetch.", self.__repository_count + 1,
                 len(context.repositories))
 
         return process.returncode == 0
 
-    def _git_merge(self, repository, repo_base_branch):
+    def _git_merge(self, repo_name, repo_base_branch):
         # type: (str, str) -> bool
 
         logger = self.__logger
         context = self.__context
 
         command = ["git", "merge", repo_base_branch]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         if process.returncode != 0:
-            context.fail_repositories.append(repository)
-            logger.error("[%s] %s" % (self._display_of(repository), "Failed git merge."))
+            context.fail_repositories.append(repo_name)
+            logger.error("[%s] %s" % (self._display_of(repo_name), "Failed git merge."))
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Failed git merge.", self.__repository_count + 1,
+                self._display_of(repo_name), "Failed git merge.", self.__repository_count + 1,
                 len(context.repositories))
 
         return process.returncode == 0
 
     @staticmethod
-    def _display_of(repository):
+    def _display_of(repo_name):
         # type: (str) -> str
 
-        space = " " * (33 - len(repository.decode("utf-8")))
-        return repository + space
+        space = " " * (33 - len(repo_name.decode("utf-8")))
+        return repo_name + space
