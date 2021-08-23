@@ -5,7 +5,7 @@ git-synchronizerは、複数のGitリポジトリを、一括で同期する為�
 以下は実行結果の一例です。
 
 ```text
-root@git-synchronizer:/app# python -m git-synchronizer -f config/repo-my-project.json -d ~/repo/
+docker@git-synchronizer:/app/git-synchronizer$ python2.7 -m gitsynchronizer -f gitsynchronizer/config/default/repo-my-project.json -d ~/repo/
 [db-client                        ] Succeeded synchronization. - - - 1/3
 [git-synchronizer                 ] Succeeded synchronization. - - - 2/3
 [experimental-tools               ] Succeeded synchronization. - - - 3/3
@@ -14,7 +14,7 @@ root@git-synchronizer:/app# python -m git-synchronizer -f config/repo-my-project
 
 全てのリポジトリの同期に成功しました。
 以下のディレクトリ配下のリポジトリの同期を行いました。
-/root/repo/KatoRyota
+/home/docker/repo/KatoRyota
 
 --- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
 　　・なし
