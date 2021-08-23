@@ -70,27 +70,27 @@ class Synchronizer(object):
 
         os.chdir(org_cwd)
 
-    def _git_clone(self, repository):
+    def _git_clone(self, repo_name):
         # type: (str) -> bool
 
         logger = self.__logger
         context = self.__context
         config = self.__context.config
 
-        uri = config.get("repository", "uri").format(project=context.project, repository=repository)
+        uri = config.get("repository", "uri").format(project=context.project, repository=repo_name)
         command = ["git", "clone", uri]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         if process.returncode != 0:
-            context.fail_repositories.append(repository)
-            logger.error("[%s] %s" % (self._display_of(repository), "Failed git clone."))
+            context.fail_repositories.append(repo_name)
+            logger.error("[%s] %s" % (self._display_of(repo_name), "Failed git clone."))
             print "[%s] %s - - - %s/%s" % (
-                self._display_of(repository), "Failed git clone.", self.__repository_count + 1,
+                self._display_of(repo_name), "Failed git clone.", self.__repository_count + 1,
                 len(context.repositories))
 
         return process.returncode == 0
