@@ -56,12 +56,12 @@ git clone https://github.com/KatoRyota/git-synchronizer.git
 
 # Usage
 
-プロファイル毎 (`dbclient/config/${PROFILE}/`) の設定ファイル (`application.conf`) に、  
+プロファイル毎 (`gitsynchronizer/config/${PROFILE}/`) の設定ファイル (`application.conf`) に、  
 Gitリポジトリの接続先情報 (`repository`セクション) を記載して下さい。  
-設定ファイルは、デフォルトで`dbclient/config/default/`ディレクトリ配下のものを読み込みます。  
-プロファイルは、`dbclient/config/`ディレクトリ直下に、任意の名前を付けて、追加することが可能です。  
+設定ファイルは、デフォルトで`gitsynchronizer/config/default/`ディレクトリ配下のものを読み込みます。  
+プロファイルは、`gitsynchronizer/config/`ディレクトリ直下に、任意の名前を付けて、追加することが可能です。  
 プロファイルは、環境変数[`GITSYNCHRONIZER_PROFILE`]に、  
-`dbclient/config/`ディレクトリ直下の、ディレクトリ名をセットすることで変更可能です。
+`gitsynchronizer/config/`ディレクトリ直下の、ディレクトリ名をセットすることで変更可能です。
 
 以下を参考にして、同期対象リポジトリファイルを作成して下さい。
 
