@@ -95,19 +95,19 @@ class Synchronizer(object):
 
         return process.returncode == 0
 
-    def _git_diff_with_working_directory(self, repository):
+    def _git_diff_with_working_directory(self, repo_name):
         # type: (str) -> bool
 
         logger = self.__logger
         context = self.__context
 
         command = ["git", "diff", "--exit-code", "--quiet"]
-        logger.debug("[%s] %s" % (self._display_of(repository), " ".join(command)))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), " ".join(command)))
 
         process = Popen(command, stdout=PIPE, stderr=STDOUT)
         context.subprocesses.append(process)
         stdout = process.communicate()[0].decode("utf-8")
-        logger.debug("[%s] %s" % (self._display_of(repository), stdout))
+        logger.debug("[%s] %s" % (self._display_of(repo_name), stdout))
 
         return process.returncode == 1
 
