@@ -224,7 +224,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = "KatoRyota".decode("utf-8")
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
 
         # 実行 & 検証
@@ -236,7 +238,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = None
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
 
         # 実行 & 検証
@@ -248,7 +252,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = ""
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
 
         # 実行 & 検証
@@ -260,7 +266,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = 1
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
 
         # 実行 & 検証
@@ -308,7 +316,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = "KatoRyota".decode("utf-8")
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = None
 
         # 実行 & 検証
@@ -320,7 +330,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = "KatoRyota".decode("utf-8")
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = ""
 
         # 実行 & 検証
@@ -332,7 +344,9 @@ class TestContext(TestCase):
         # 前提条件
         context = Context()
         context.project = "KatoRyota".decode("utf-8")
-        context.repositories = ["db-client", "git-synchronizer"]
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
         context.project_dir = 1
 
         # 実行 & 検証
