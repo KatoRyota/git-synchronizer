@@ -59,7 +59,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -120,9 +123,13 @@ class TestGitSynchronizer(TestCase):
             expected = "KatoRyota"
             self.assertEqual(expected, actual)
 
-            actual = context.repositories
-            expected = ["db-client", "git-synchronizer", "experimental-tools"]
-            self.assertListEqual(expected, actual)
+            actual = context.repositories[1].get("name")
+            expected = "git-synchronizer"
+            self.assertEqual(expected, actual)
+
+            actual = context.repositories[1].get("base_branch")
+            expected = "main"
+            self.assertEqual(expected, actual)
 
             actual = context.project_dir
             expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -171,7 +178,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -238,7 +248,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -309,7 +322,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -376,7 +392,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -443,7 +462,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("log_dir"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -504,9 +526,13 @@ class TestGitSynchronizer(TestCase):
             expected = "KatoRyota"
             self.assertEqual(expected, actual)
 
-            actual = context.repositories
-            expected = ["db-client", "git-synchronizer", "experimental-tools"]
-            self.assertListEqual(expected, actual)
+            actual = context.repositories[1].get("name")
+            expected = "git-synchronizer"
+            self.assertEqual(expected, actual)
+
+            actual = context.repositories[1].get("base_branch")
+            expected = "main"
+            self.assertEqual(expected, actual)
 
             actual = context.project_dir
             expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -555,7 +581,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), False),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -626,7 +655,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), True)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -687,9 +719,13 @@ class TestGitSynchronizer(TestCase):
             expected = "KatoRyota"
             self.assertEqual(expected, actual)
 
-            actual = context.repositories
-            expected = ["db-client", "git-synchronizer", "experimental-tools"]
-            self.assertListEqual(expected, actual)
+            actual = context.repositories[1].get("name")
+            expected = "git-synchronizer"
+            self.assertEqual(expected, actual)
+
+            actual = context.repositories[1].get("base_branch")
+            expected = "main"
+            self.assertEqual(expected, actual)
 
             actual = context.project_dir
             expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -738,8 +774,13 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"],
-                                       "test": ["test"]}
+            json_loads.return_value = {
+                "KatoRyota": [
+                    {"name": "db-client", "base_branch": "main"},
+                    {"name": "git-synchronizer", "base_branch": "main"},
+                    {"name": "experimental-tools", "base_branch": "main"}],
+                "test": [
+                    {"name": "test", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -806,7 +847,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "test"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             os.environ["GITSYNCHRONIZER_PROFILE"] = "test"
             os.environ["PYTHONIOENCODING"] = "utf-8"
@@ -865,9 +909,13 @@ class TestGitSynchronizer(TestCase):
             expected = "KatoRyota"
             self.assertEqual(expected, actual)
 
-            actual = context.repositories
-            expected = ["db-client", "git-synchronizer", "experimental-tools"]
-            self.assertListEqual(expected, actual)
+            actual = context.repositories[1].get("name")
+            expected = "git-synchronizer"
+            self.assertEqual(expected, actual)
+
+            actual = context.repositories[1].get("base_branch")
+            expected = "main"
+            self.assertEqual(expected, actual)
 
             actual = context.project_dir
             expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
@@ -916,7 +964,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
@@ -985,7 +1036,10 @@ class TestGitSynchronizer(TestCase):
                 (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
                 (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
 
-            json_loads.return_value = {"KatoRyota": ["db-client", "git-synchronizer", "experimental-tools"]}
+            json_loads.return_value = {"KatoRyota": [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"},
+                {"name": "experimental-tools", "base_branch": "main"}]}
 
             if os.environ.get("GITSYNCHRONIZER_PROFILE"):
                 del os.environ["GITSYNCHRONIZER_PROFILE"]
