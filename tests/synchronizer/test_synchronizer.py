@@ -47,7 +47,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -122,7 +124,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -195,7 +199,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -270,7 +276,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -343,7 +351,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -416,7 +426,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -489,7 +501,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -562,7 +576,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -637,7 +653,9 @@ class TestSynchronizer(TestCase):
 
             context = Context()
             context.project_dir = os.path.abspath(os.path.join("dst_dir", "project"))
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context).execute()
@@ -690,7 +708,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 0
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             config = context.config
             config.add_section("repository")
@@ -720,7 +740,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 1
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             config = context.config
             config.add_section("repository")
@@ -770,7 +792,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 0
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_stash_save("db-client")
@@ -800,7 +824,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 1
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_stash_save("db-client")
@@ -834,10 +860,12 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 0
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_checkout("db-client")
+            Synchronizer(context)._git_checkout("db-client", "main")
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
@@ -860,10 +888,12 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 1
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_checkout("db-client")
+            Synchronizer(context)._git_checkout("db-client", "main")
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
@@ -890,7 +920,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 0
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_fetch("db-client")
@@ -916,7 +948,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 1
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_fetch("db-client")
@@ -946,7 +980,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 0
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_merge("db-client")
@@ -972,7 +1008,9 @@ class TestSynchronizer(TestCase):
             popen.return_value.returncode = 1
 
             context = Context()
-            context.repositories = ["db-client", "git-synchronizer"]
+            context.repositories = [
+                {"name": "db-client", "base_branch": "main"},
+                {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
             Synchronizer(context)._git_merge("db-client")
