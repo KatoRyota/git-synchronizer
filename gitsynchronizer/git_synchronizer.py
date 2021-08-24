@@ -107,6 +107,13 @@ class GitSynchronizer(object):
             logger.debug("ロギング設定ファイルパス -> " + os.path.join(context.config_dir, "logging.conf"))
             logger.debug("ログディレクトリ -> " + context.log_dir)
 
+            # ---- シグナルハンドラーの設定 ----
+            signal.signal(signal.SIGINT, self.terminate_subprocess)
+            signal.signal(signal.SIGTERM, self.terminate_subprocess)
+            if not platform.system() == "Windows":
+                signal.signal(signal.SIGHUP, self.terminate_subprocess)
+                signal.signal(signal.SIGQUIT, self.terminate_subprocess)
+
             # ---- 起動オプションのパース ----
             option_parser.set_usage("python -m gitsynchronizer [-h][-f ARG][-d ARG]")
 
@@ -134,13 +141,6 @@ class GitSynchronizer(object):
             # ---- 起動オプションをパースした後の、コンテキストオブジェクトの状態チェック ----
             if not context.check_option_parse():
                 raise OptParseError(u"起動オプションが不正です。")
-
-            # ---- シグナルハンドラーの設定 ----
-            signal.signal(signal.SIGINT, self.terminate_subprocess)
-            signal.signal(signal.SIGTERM, self.terminate_subprocess)
-            if not platform.system() == "Windows":
-                signal.signal(signal.SIGHUP, self.terminate_subprocess)
-                signal.signal(signal.SIGQUIT, self.terminate_subprocess)
 
             # ---- 同期対象リポジトリファイルの読み込み ----
             with open(context.repo_file, "rb") as f:
