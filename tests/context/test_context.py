@@ -312,6 +312,20 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
+        # ---- ケース3.4 ----
+        # 前提条件
+        context = Context()
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "default_branch": "main"}]
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
         # ---- ケース4.1 ----
         # 前提条件
         context = Context()
