@@ -740,7 +740,7 @@ class TestGitSynchronizer(TestCase):
             context_check_synchronize.assert_called_once()
             printer_execute.assert_called_once()
 
-        # ---- ケース9.1 ----
+        # ---- ケース8.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
                 mock.patch("sys.stdout", new=BytesIO()) as stdout, \
@@ -857,7 +857,7 @@ class TestGitSynchronizer(TestCase):
             context_check_synchronize.assert_called_once()
             printer_execute.assert_called_once()
 
-        # ---- ケース10.1 ----
+        # ---- ケース9.1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
                 mock.patch("sys.stdout", new=BytesIO()) as stdout, \
@@ -929,7 +929,7 @@ class TestGitSynchronizer(TestCase):
             context_check_synchronize.assert_not_called()
             printer_execute.assert_not_called()
 
-        # ---- ケース10.2 ----
+        # ---- ケース9.2 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
                 mock.patch("sys.stdout", new=BytesIO()) as stdout, \
