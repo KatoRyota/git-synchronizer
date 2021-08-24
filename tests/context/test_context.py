@@ -237,7 +237,7 @@ class TestContext(TestCase):
         expected = True
         self.assertEqual(expected, actual)
 
-        # ---- ケース2.1 ----
+        # ---- ケース3.1 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -254,7 +254,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース2.2 ----
+        # ---- ケース3.2 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -271,7 +271,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース2.3 ----
+        # ---- ケース3.3 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -288,7 +288,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース3.1 ----
+        # ---- ケース4.1 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -303,7 +303,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース3.2 ----
+        # ---- ケース4.2 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -318,7 +318,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース3.3 ----
+        # ---- ケース4.3 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -333,7 +333,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース3.4 ----
+        # ---- ケース4.4 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -350,7 +350,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース4.1 ----
+        # ---- ケース5.1 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -367,7 +367,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース4.2 ----
+        # ---- ケース5.2 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
@@ -384,7 +384,7 @@ class TestContext(TestCase):
         expected = False
         self.assertEqual(expected, actual)
 
-        # ---- ケース4.3 ----
+        # ---- ケース5.3 ----
         # 前提条件
         context = Context()
         context.loaded_repo_file = {"KatoRyota": [
