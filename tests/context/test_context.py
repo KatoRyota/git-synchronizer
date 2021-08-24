@@ -237,6 +237,51 @@ class TestContext(TestCase):
         expected = True
         self.assertEqual(expected, actual)
 
+        # ---- ケース2.1 ----
+        # 前提条件
+        context = Context()
+        context.loaded_repo_file = None
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
+        # ---- ケース2.2 ----
+        # 前提条件
+        context = Context()
+        context.loaded_repo_file = ""
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
+        # ---- ケース2.3 ----
+        # 前提条件
+        context = Context()
+        context.loaded_repo_file = 1
+        context.project = "KatoRyota".decode("utf-8")
+        context.repositories = [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]
+        context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
+
+        # 実行 & 検証
+        actual = context.check_repo_file_load()
+        expected = False
+        self.assertEqual(expected, actual)
+
         # ---- ケース3.1 ----
         # 前提条件
         context = Context()
