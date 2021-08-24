@@ -717,9 +717,13 @@ class TestSynchronizer(TestCase):
             config.set("repository", "uri", "https://github.com/{project}/{repository}.git")
 
             # 実行
-            Synchronizer(context)._git_clone("db-client")
+            result = Synchronizer(context)._git_clone("db-client")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 """
@@ -749,9 +753,13 @@ class TestSynchronizer(TestCase):
             config.set("repository", "uri", "https://github.com/{project}/{repository}.git")
 
             # 実行
-            Synchronizer(context)._git_clone("db-client")
+            result = Synchronizer(context)._git_clone("db-client")
 
             # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 [db-client                        ] Failed git clone. - - - 1/2
@@ -770,14 +778,39 @@ class TestSynchronizer(TestCase):
         # type: () -> None
 
         # ---- ケース1 ----
-        with mock.patch("subprocess.Popen.__new__"):
+        with mock.patch("subprocess.Popen.__new__") as popen:
             # 前提条件
+            popen.return_value.returncode = 1
+
             context = Context()
 
             # 実行
-            Synchronizer(context)._git_diff_with_working_directory("db-client")
+            result = Synchronizer(context)._git_diff_with_working_directory("db-client")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
+            actual = len(context.subprocesses)
+            expected = 1
+            self.assertEqual(expected, actual)
+
+        # ---- ケース2.1 ----
+        with mock.patch("subprocess.Popen.__new__") as popen:
+            # 前提条件
+            popen.return_value.returncode = 0
+
+            context = Context()
+
+            # 実行
+            result = Synchronizer(context)._git_diff_with_working_directory("db-client")
+
+            # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = len(context.subprocesses)
             expected = 1
             self.assertEqual(expected, actual)
@@ -797,9 +830,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_stash_save("db-client")
+            result = Synchronizer(context)._git_stash_save("db-client")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 """
@@ -829,9 +866,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_stash_save("db-client")
+            result = Synchronizer(context)._git_stash_save("db-client")
 
             # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 [db-client                        ] Failed git stash save. - - - 1/2
@@ -865,9 +906,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_checkout("db-client", "main")
+            result = Synchronizer(context)._git_checkout("db-client", "main")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 """
@@ -893,9 +938,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_checkout("db-client", "main")
+            result = Synchronizer(context)._git_checkout("db-client", "main")
 
             # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 [db-client                        ] Failed git checkout. - - - 1/2
@@ -925,9 +974,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_fetch("db-client")
+            result = Synchronizer(context)._git_fetch("db-client")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 """
@@ -953,9 +1006,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_fetch("db-client")
+            result = Synchronizer(context)._git_fetch("db-client")
 
             # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 [db-client                        ] Failed git fetch. - - - 1/2
@@ -985,9 +1042,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_merge("db-client", "main")
+            result = Synchronizer(context)._git_merge("db-client", "main")
 
             # 検証
+            actual = result
+            expected = True
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 """
@@ -1013,9 +1074,13 @@ class TestSynchronizer(TestCase):
                 {"name": "git-synchronizer", "base_branch": "main"}]
 
             # 実行
-            Synchronizer(context)._git_merge("db-client", "main")
+            result = Synchronizer(context)._git_merge("db-client", "main")
 
             # 検証
+            actual = result
+            expected = False
+            self.assertEqual(expected, actual)
+
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
 [db-client                        ] Failed git merge. - - - 1/2
