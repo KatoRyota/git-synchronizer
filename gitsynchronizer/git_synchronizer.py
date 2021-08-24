@@ -129,16 +129,14 @@ class GitSynchronizer(object):
 
             (options, args) = option_parser.parse_args()
 
-            # ---- 起動オプションを元に、コンテキストオブジェクトを設定 ----
-            # ---- repo_file ----
+            # repo_file
             if options.repo_file:
                 context.repo_file = os.path.abspath(options.repo_file)
 
-            # ---- dst_dir ----
+            # dst_dir
             if options.dst_dir:
                 context.dst_dir = os.path.abspath(options.dst_dir)
 
-            # ---- 起動オプションをパースした後の、コンテキストオブジェクトの状態チェック ----
             if not context.check_option_parse():
                 raise OptParseError(u"起動オプションが不正です。")
 
@@ -151,16 +149,16 @@ class GitSynchronizer(object):
             context.repositories = context.loaded_repo_file.values()[0]
             context.project_dir = os.path.join(context.dst_dir, context.project)
 
-            # ---- 同期対象リポジトリファイルを読み込んだ後の、コンテキストオブジェクトの状態チェック ----
             if not context.check_repo_file_load():
                 raise StandardError(u"同期対象リポジトリファイルの内容が不正です。-> " + context.repo_file)
 
-            # ---- gitコマンドの実行と、レポート出力 ----
+            # ---- gitコマンドの実行 ----
             Synchronizer(context).execute()
 
             if not context.check_synchronize():
                 raise StandardError(u"リポジトリの同期に失敗しました。")
 
+            # ---- 結果レポートの出力 ----
             Printer(context).execute()
 
             logger.info("[End] " + os.path.abspath(__file__))
