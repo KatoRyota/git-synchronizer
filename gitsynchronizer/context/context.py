@@ -16,6 +16,7 @@ class Context(object):
         "subprocesses",
         "repo_file",
         "dst_dir",
+        "loaded_repo_file",
         "project_dir",
         "project",
         "repositories",
@@ -37,6 +38,7 @@ class Context(object):
         self.subprocesses = []  # type: list
         self.repo_file = ""  # type: str
         self.dst_dir = ""  # type: str
+        self.loaded_repo_file = {}  # type: dict
         self.project_dir = u""  # type: unicode
         self.project = u""  # type: unicode
         self.repositories = []  # type: list
@@ -99,6 +101,13 @@ class Context(object):
 
     def check_repo_file_load(self):
         # type: () -> bool
+
+        if not self.loaded_repo_file:
+            return False
+        if type(self.loaded_repo_file) is not dict:
+            return False
+        if len(self.loaded_repo_file.keys()) > 1:
+            return False
 
         if not self.project:
             return False

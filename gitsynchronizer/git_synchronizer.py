@@ -142,18 +142,13 @@ class GitSynchronizer(object):
                 signal.signal(signal.SIGHUP, self.terminate_subprocess)
                 signal.signal(signal.SIGQUIT, self.terminate_subprocess)
 
-            # ---- 同期対象リポジトリファイルの読み込みと、妥当性チェック ----
+            # ---- 同期対象リポジトリファイルの読み込み ----
             with open(context.repo_file, "rb") as f:
                 repo_json = f.read().decode("utf-8")
 
-            sync_repositories = json.loads(repo_json)
-
-            if len(sync_repositories.keys()) > 1:
-                raise StandardError(u"同期対象リポジトリファイルの内容が不正です。-> " + context.repo_file)
-
-            # ---- 同期対象リポジトリファイルを元に、コンテキストオブジェクトを設定 ----
-            context.project = sync_repositories.keys()[0]
-            context.repositories = sync_repositories.values()[0]
+            context.loaded_repo_file = json.loads(repo_json)
+            context.project = context.loaded_repo_file.keys()[0]
+            context.repositories = context.loaded_repo_file.values()[0]
             context.project_dir = os.path.join(context.dst_dir, context.project)
 
             # ---- 同期対象リポジトリファイルを読み込んだ後の、コンテキストオブジェクトの状態チェック ----

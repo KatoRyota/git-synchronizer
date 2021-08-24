@@ -223,6 +223,9 @@ class TestContext(TestCase):
         # ---- ケース1 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -237,6 +240,9 @@ class TestContext(TestCase):
         # ---- ケース2.1 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = None
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -251,6 +257,9 @@ class TestContext(TestCase):
         # ---- ケース2.2 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = ""
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -265,6 +274,9 @@ class TestContext(TestCase):
         # ---- ケース2.3 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = 1
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -279,6 +291,9 @@ class TestContext(TestCase):
         # ---- ケース3.1 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = None
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
@@ -291,6 +306,9 @@ class TestContext(TestCase):
         # ---- ケース3.2 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = ""
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
@@ -303,6 +321,9 @@ class TestContext(TestCase):
         # ---- ケース3.3 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = 1
         context.project_dir = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota")).decode("utf-8")
@@ -315,6 +336,9 @@ class TestContext(TestCase):
         # ---- ケース3.4 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -329,6 +353,9 @@ class TestContext(TestCase):
         # ---- ケース4.1 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -343,6 +370,9 @@ class TestContext(TestCase):
         # ---- ケース4.2 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
@@ -357,6 +387,9 @@ class TestContext(TestCase):
         # ---- ケース4.3 ----
         # 前提条件
         context = Context()
+        context.loaded_repo_file = {"KatoRyota": [
+            {"name": "db-client", "base_branch": "main"},
+            {"name": "git-synchronizer", "base_branch": "main"}]}
         context.project = "KatoRyota".decode("utf-8")
         context.repositories = [
             {"name": "db-client", "base_branch": "main"},
