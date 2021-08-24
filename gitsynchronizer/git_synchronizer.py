@@ -123,8 +123,7 @@ class GitSynchronizer(object):
                                      metavar="ARG")
 
             option_parser.add_option("-d", "--dst_dir",
-                                     help="Path of destination directory. "
-                                          "(e.g. ~/repo/)",
+                                     help="Path of destination directory. (e.g. ~/repo/)",
                                      metavar="ARG")
 
             (options, args) = option_parser.parse_args()
