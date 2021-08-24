@@ -38,7 +38,7 @@ class Synchronizer(object):
         for self.__repository_count, repository in enumerate(context.repositories):  # type: (int, dict)
             repo_name = repository.get("name")
             repo_base_branch = repository.get("base_branch")
-            repo_dir = os.path.abspath(os.path.join(context.project_dir, repo_name))
+            repo_dir = os.path.join(context.project_dir, repo_name)
 
             if not os.path.isdir(repo_dir):
                 logger.debug("Change directory. -> " + context.project_dir)

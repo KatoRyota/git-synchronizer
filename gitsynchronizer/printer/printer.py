@@ -1,6 +1,5 @@
 # coding: utf-8
 import logging
-import os
 from logging import Logger
 
 from ..context.context import Context
@@ -35,7 +34,7 @@ class Printer(object):
             message += u"同期に失敗したリポジトリがあります。\n"
 
         message += u"以下のディレクトリ配下のリポジトリの同期を行いました。\n"
-        message += os.path.abspath(context.project_dir) + "\n"
+        message += context.project_dir + "\n"
         message += "\n"
 
         message += u"--- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---\n"
