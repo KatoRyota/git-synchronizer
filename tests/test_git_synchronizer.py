@@ -72,8 +72,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -114,11 +114,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json")
             self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo"))
+            expected = os.path.join(root_dir, "repo")
             self.assertEqual(expected, actual)
 
             actual = context.project
@@ -134,7 +134,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            expected = os.path.join(root_dir, "repo", "KatoRyota")
             self.assertEqual(expected, actual)
 
             makedirs.assert_called_once()
@@ -191,8 +191,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -261,8 +261,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -335,8 +335,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -405,8 +405,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -475,8 +475,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -517,11 +517,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json")
             self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo"))
+            expected = os.path.join(root_dir, "repo")
             self.assertEqual(expected, actual)
 
             actual = context.project
@@ -537,7 +537,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            expected = os.path.join(root_dir, "repo", "KatoRyota")
             self.assertEqual(expected, actual)
 
             makedirs.assert_called_once()
@@ -594,8 +594,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -668,8 +668,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -710,11 +710,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json")
             self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo"))
+            expected = os.path.join(root_dir, "repo")
             self.assertEqual(expected, actual)
 
             actual = context.project
@@ -730,7 +730,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            expected = os.path.join(root_dir, "repo", "KatoRyota")
             self.assertEqual(expected, actual)
 
             makedirs.assert_not_called()
@@ -785,8 +785,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "utf-8"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -827,11 +827,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.repo_file
-            expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json")
             self.assertEqual(expected, actual)
 
             actual = context.dst_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo"))
+            expected = os.path.join(root_dir, "repo")
             self.assertEqual(expected, actual)
 
             actual = context.project
@@ -847,7 +847,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.project_dir
-            expected = os.path.abspath(os.path.join("home", "docker", "repo", "KatoRyota"))
+            expected = os.path.join(root_dir, "repo", "KatoRyota")
             self.assertEqual(expected, actual)
 
             makedirs.assert_called_once()
@@ -905,8 +905,8 @@ class TestGitSynchronizer(TestCase):
                 del os.environ["PYTHONIOENCODING"]
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
@@ -976,8 +976,8 @@ class TestGitSynchronizer(TestCase):
             os.environ["PYTHONIOENCODING"] = "euc-jp"
 
             sys.argv = ["git_synchronizer.py",
-                        "-f", os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"),
-                        "-d", os.path.join("home", "docker", "repo")]
+                        "-f", os.path.join(root_dir, "gitsynchronizer", "config", "default", "repo-my-project.json"),
+                        "-d", os.path.join(root_dir, "repo")]
 
             stdout.encoding = "utf-8"
             stderr.encoding = "utf-8"
