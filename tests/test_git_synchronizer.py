@@ -25,6 +25,8 @@ class TestGitSynchronizer(TestCase):
         sys.stdout = before_stdout
         sys.stderr = before_stderr
 
+        root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+
         # ---- ケース1 ----
         with mock.patch("__builtin__.reload"), \
                 mock.patch("__builtin__.open"), \
@@ -56,8 +58,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -88,7 +90,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = os.environ.get("LOG_DIR")
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
@@ -96,7 +98,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.root_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer")
+            expected = os.path.join(root_dir, "gitsynchronizer")
             self.assertIn(expected, actual)
 
             actual = context.profile
@@ -104,11 +106,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.config_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
             self.assertIn(expected, actual)
 
             actual = context.log_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = context.repo_file
@@ -175,8 +177,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -245,8 +247,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -319,8 +321,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -389,8 +391,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -456,11 +458,11 @@ class TestGitSynchronizer(TestCase):
             context_check_synchronize.return_value = True
 
             config_parser_get.side_effect = self._config_parser_get_side_effect((
-                ("logging", "log_dir", "log_dir"),))
+                ("logging", "log_dir", os.path.join(root_dir, "log_dir")),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("log_dir"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "log_dir"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -491,7 +493,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = os.environ.get("LOG_DIR")
-            expected = os.path.join("log_dir")
+            expected = os.path.join(root_dir, "log_dir")
             self.assertIn(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
@@ -499,7 +501,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.root_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer")
+            expected = os.path.join(root_dir, "gitsynchronizer")
             self.assertIn(expected, actual)
 
             actual = context.profile
@@ -507,11 +509,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.config_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
             self.assertIn(expected, actual)
 
             actual = context.log_dir
-            expected = os.path.join("log_dir")
+            expected = os.path.join(root_dir, "log_dir")
             self.assertIn(expected, actual)
 
             actual = context.repo_file
@@ -578,8 +580,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), False),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), False),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -652,8 +654,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), True)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), True)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -684,7 +686,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = os.environ.get("LOG_DIR")
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
@@ -692,7 +694,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.root_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer")
+            expected = os.path.join(root_dir, "gitsynchronizer")
             self.assertIn(expected, actual)
 
             actual = context.profile
@@ -700,11 +702,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.config_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "config", "default")
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
             self.assertIn(expected, actual)
 
             actual = context.log_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = context.repo_file
@@ -771,8 +773,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "test"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "test"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -801,7 +803,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = os.environ.get("LOG_DIR")
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
@@ -809,7 +811,7 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.root_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer")
+            expected = os.path.join(root_dir, "gitsynchronizer")
             self.assertIn(expected, actual)
 
             actual = context.profile
@@ -817,11 +819,11 @@ class TestGitSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = context.config_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "config", "test")
+            expected = os.path.join(root_dir, "gitsynchronizer", "config", "test")
             self.assertIn(expected, actual)
 
             actual = context.log_dir
-            expected = os.path.join("git-synchronizer", "gitsynchronizer", "log")
+            expected = os.path.join(root_dir, "gitsynchronizer", "log")
             self.assertIn(expected, actual)
 
             actual = context.repo_file
@@ -888,8 +890,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -960,8 +962,8 @@ class TestGitSynchronizer(TestCase):
                 ("logging", "log_dir", ""),))
 
             isdir.side_effect = self._isdir_side_effect((
-                (os.path.join("git-synchronizer", "gitsynchronizer", "config", "default"), True),
-                (os.path.join("git-synchronizer", "gitsynchronizer", "log"), False)))
+                (os.path.join(root_dir, "gitsynchronizer", "config", "default"), True),
+                (os.path.join(root_dir, "gitsynchronizer", "log"), False)))
 
             json_loads.return_value = {"KatoRyota": [
                 {"name": "db-client", "base_branch": "main"},
@@ -1008,7 +1010,7 @@ class TestGitSynchronizer(TestCase):
             # type: (str) -> bool
 
             for return_value_tuple in return_values:  # type: tuple
-                if return_value_tuple[0] in inner_path:
+                if return_value_tuple[0] == inner_path:
                     return return_value_tuple[1]
 
             raise StandardError(u"引数が不正です。")
