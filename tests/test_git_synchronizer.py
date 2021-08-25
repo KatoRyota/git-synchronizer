@@ -91,7 +91,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = os.environ.get("LOG_DIR")
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
             expected = "utf-8"
@@ -99,7 +99,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.root_dir
             expected = os.path.join(root_dir, "gitsynchronizer")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.profile
             expected = "default"
@@ -107,11 +107,11 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.config_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.log_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.repo_file
             expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
@@ -494,7 +494,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = os.environ.get("LOG_DIR")
             expected = os.path.join(root_dir, "log_dir")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
             expected = "utf-8"
@@ -502,7 +502,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.root_dir
             expected = os.path.join(root_dir, "gitsynchronizer")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.profile
             expected = "default"
@@ -510,11 +510,11 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.config_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.log_dir
             expected = os.path.join(root_dir, "log_dir")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.repo_file
             expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
@@ -687,7 +687,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = os.environ.get("LOG_DIR")
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
             expected = "utf-8"
@@ -695,7 +695,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.root_dir
             expected = os.path.join(root_dir, "gitsynchronizer")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.profile
             expected = "default"
@@ -703,11 +703,11 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.config_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "config", "default")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.log_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.repo_file
             expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
@@ -804,7 +804,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = os.environ.get("LOG_DIR")
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = os.environ.get("PYTHONIOENCODING")
             expected = "utf-8"
@@ -812,7 +812,7 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.root_dir
             expected = os.path.join(root_dir, "gitsynchronizer")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.profile
             expected = "test"
@@ -820,11 +820,11 @@ class TestGitSynchronizer(TestCase):
 
             actual = context.config_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "config", "test")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.log_dir
             expected = os.path.join(root_dir, "gitsynchronizer", "log")
-            self.assertIn(expected, actual)
+            self.assertEqual(expected, actual)
 
             actual = context.repo_file
             expected = os.path.abspath(os.path.join("gitsynchronizer", "config", "default", "repo-my-project.json"))
