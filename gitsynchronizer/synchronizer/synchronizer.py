@@ -93,7 +93,9 @@ class Synchronizer(object):
                 self._display_of(repo_name), "Failed git clone.", self.__repository_count + 1,
                 len(context.repositories))
 
-        return process.returncode == 0
+            return False
+
+        return True
 
     def _git_diff_with_working_directory(self, repo_name):
         # type: (str) -> bool
@@ -134,9 +136,11 @@ class Synchronizer(object):
                 self._display_of(repo_name), "Failed git stash save.", self.__repository_count + 1,
                 len(context.repositories))
 
+            return False
+
         context.stash_repositories.append(repo_name)
 
-        return process.returncode == 0
+        return True
 
     def _git_checkout(self, repo_name, repo_base_branch):
         # type: (str, str) -> bool
@@ -159,7 +163,9 @@ class Synchronizer(object):
                 self._display_of(repo_name), "Failed git checkout.", self.__repository_count + 1,
                 len(context.repositories))
 
-        return process.returncode == 0
+            return False
+
+        return True
 
     def _git_fetch(self, repo_name):
         # type: (str) -> bool
@@ -182,7 +188,9 @@ class Synchronizer(object):
                 self._display_of(repo_name), "Failed git fetch.", self.__repository_count + 1,
                 len(context.repositories))
 
-        return process.returncode == 0
+            return False
+
+        return True
 
     def _git_merge(self, repo_name, repo_base_branch):
         # type: (str, str) -> bool
@@ -205,7 +213,9 @@ class Synchronizer(object):
                 self._display_of(repo_name), "Failed git merge.", self.__repository_count + 1,
                 len(context.repositories))
 
-        return process.returncode == 0
+            return False
+
+        return True
 
     @staticmethod
     def _display_of(repo_name):

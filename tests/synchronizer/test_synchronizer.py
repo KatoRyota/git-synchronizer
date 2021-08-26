@@ -888,7 +888,7 @@ class TestSynchronizer(TestCase):
             self.assertEqual(expected, actual)
 
             actual = len(context.stash_repositories)
-            expected = 1
+            expected = 0
             self.assertEqual(expected, actual)
 
     def test__git_checkout(self):
