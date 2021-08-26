@@ -92,7 +92,7 @@ class GitSynchronizer(object):
         try:
             logger.info("[Start] " + os.path.abspath(__file__))
 
-            # ---- システム環境情報を出力 ----
+            # ---- システム環境情報の出力 ----
             logger.debug("system/os name -> " + platform.system())
             logger.debug("[encoding] locale -> " + locale.getpreferredencoding())
             logger.debug("[encoding] default -> " + sys.getdefaultencoding())
@@ -137,7 +137,7 @@ class GitSynchronizer(object):
                 context.dst_dir = os.path.abspath(options.dst_dir)
 
             if not context.check_option_parse():
-                raise OptParseError(u"起動オプションが不正です。")
+                raise OptParseError(u"起動オプションのパースに失敗しました。")
 
             # ---- 同期対象リポジトリファイルの読み込み ----
             with open(context.repo_file, "rb") as f:
@@ -149,9 +149,9 @@ class GitSynchronizer(object):
             context.project_dir = os.path.join(context.dst_dir, context.project)
 
             if not context.check_repo_file_load():
-                raise StandardError(u"同期対象リポジトリファイルの内容が不正です。-> " + context.repo_file)
+                raise StandardError(u"同期対象リポジトリファイルの読み込みに失敗しました。-> " + context.repo_file)
 
-            # ---- gitコマンドの実行 ----
+            # ---- リポジトリの同期 ----
             Synchronizer(context).execute()
 
             if not context.check_synchronize():
@@ -163,13 +163,13 @@ class GitSynchronizer(object):
             logger.info("[End] " + os.path.abspath(__file__))
 
         except OptParseError:
-            logger.exception(u"起動オプションが不正です。")
+            logger.exception(u"起動オプションのパースに失敗しました。")
             traceback.print_exc()
             option_parser.print_help()
             sys.exit(1)
 
         except Exception:
-            logger.exception(u"想定外のエラーが発生しました。")
+            logger.exception(u"エラーが発生しました。")
             traceback.print_exc()
             sys.exit(1)
 

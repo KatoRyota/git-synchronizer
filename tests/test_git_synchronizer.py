@@ -274,7 +274,7 @@ class TestGitSynchronizer(TestCase):
 
             # 検証
             actual = stderr.getvalue().decode("utf-8")
-            expected = u"起動オプションが不正です。\n"
+            expected = u"起動オプションのパースに失敗しました。\n"
             self.assertRegexpMatches(actual, expected)
 
             actual = stdout.getvalue().decode("utf-8")
@@ -348,7 +348,7 @@ class TestGitSynchronizer(TestCase):
 
             # 検証
             actual = stderr.getvalue().decode("utf-8")
-            expected = u"同期対象リポジトリファイルの内容が不正です。-> .*\n"
+            expected = u"同期対象リポジトリファイルの読み込みに失敗しました。-> .*\n"
             self.assertRegexpMatches(actual, expected)
 
             makedirs.assert_called_once()
