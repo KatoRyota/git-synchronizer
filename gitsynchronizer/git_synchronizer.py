@@ -169,7 +169,7 @@ class GitSynchronizer(object):
             option_parser.print_help()
             sys.exit(1)
 
-        except Exception:
+        except BaseException:
             logger.exception(u"エラーが発生しました。")
             traceback.print_exc(file=sys.stdout)
             sys.exit(1)
