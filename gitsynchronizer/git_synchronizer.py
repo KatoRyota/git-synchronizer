@@ -164,13 +164,14 @@ class GitSynchronizer(object):
 
         except OptParseError:
             logger.exception(u"起動オプションのパースに失敗しました。")
-            traceback.print_exc()
+            traceback.print_exc(file=sys.stdout)
+            print
             option_parser.print_help()
             sys.exit(1)
 
         except Exception:
             logger.exception(u"エラーが発生しました。")
-            traceback.print_exc()
+            traceback.print_exc(file=sys.stdout)
             sys.exit(1)
 
     def terminate_subprocess(self):

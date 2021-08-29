@@ -29,13 +29,13 @@ class TestPrinter(TestCase):
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
-            expected = u'''\
+            expected = u"""\
 -------------------------------------------------------------------------------
 【結果レポート】
 
 全てのリポジトリの同期に成功しました。
 以下のディレクトリ配下のリポジトリの同期を行いました。
-.*dst_dir.project
+{project_dir}
 
 --- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
 　　・なし
@@ -48,8 +48,8 @@ class TestPrinter(TestCase):
 　　・git-synchronizer
 　　・experimental-tools
 
-'''
-            self.assertRegexpMatches(actual, expected)
+""".format(project_dir=context.project_dir)
+            self.assertIn(expected, actual)
 
         # ---- ケース2.1 ----
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
@@ -65,13 +65,13 @@ class TestPrinter(TestCase):
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
-            expected = u'''\
+            expected = u"""\
 -------------------------------------------------------------------------------
 【結果レポート】
 
 同期に失敗したリポジトリがあります。
 以下のディレクトリ配下のリポジトリの同期を行いました。
-.*dst_dir.project
+{project_dir}
 
 --- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
 　　・なし
@@ -84,8 +84,8 @@ class TestPrinter(TestCase):
 --- 同期に成功したリポジトリ ---
 　　・なし
 
-'''
-            self.assertRegexpMatches(actual, expected)
+""".format(project_dir=context.project_dir)
+            self.assertIn(expected, actual)
 
         # ---- ケース3.1 ----
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
@@ -101,13 +101,13 @@ class TestPrinter(TestCase):
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
-            expected = u'''\
+            expected = u"""\
 -------------------------------------------------------------------------------
 【結果レポート】
 
 同期に失敗したリポジトリがあります。
 以下のディレクトリ配下のリポジトリの同期を行いました。
-.*dst_dir.project
+{project_dir}
 
 --- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
 　　・なし
@@ -119,8 +119,8 @@ class TestPrinter(TestCase):
 　　・db-client
 　　・git-synchronizer
 
-'''
-            self.assertRegexpMatches(actual, expected)
+""".format(project_dir=context.project_dir)
+            self.assertIn(expected, actual)
 
         # ---- ケース4.1 ----
         with mock.patch("sys.stdout", new=BytesIO()) as stdout:
@@ -136,13 +136,13 @@ class TestPrinter(TestCase):
 
             # 検証
             actual = stdout.getvalue().decode("utf-8")
-            expected = u'''\
+            expected = u"""\
 -------------------------------------------------------------------------------
 【結果レポート】
 
 同期に失敗したリポジトリがあります。
 以下のディレクトリ配下のリポジトリの同期を行いました。
-.*dst_dir.project
+{project_dir}
 
 --- ワーキングディレクトリの内容を、Git Stashに保存したリポジトリ ---
 　　・db-client
@@ -155,8 +155,8 @@ class TestPrinter(TestCase):
 　　・db-client
 　　・git-synchronizer
 
-'''
-            self.assertRegexpMatches(actual, expected)
+""".format(project_dir=context.project_dir)
+            self.assertIn(expected, actual)
 
 
 if __name__ == "__main__":

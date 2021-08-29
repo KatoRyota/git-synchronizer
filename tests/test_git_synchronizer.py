@@ -273,13 +273,13 @@ class TestGitSynchronizer(TestCase):
                 git_synchronizer.execute()
 
             # 検証
-            actual = stderr.getvalue().decode("utf-8")
-            expected = u"起動オプションのパースに失敗しました。\n"
-            self.assertRegexpMatches(actual, expected)
-
             actual = stdout.getvalue().decode("utf-8")
-            expected = u"Usage: python -m gitsynchronizer \\[-h]\\[-f ARG]\\[-d ARG]\n"
-            self.assertRegexpMatches(actual, expected)
+            expected = u"""\
+OptParseError: 起動オプションのパースに失敗しました。
+
+Usage: python -m gitsynchronizer [-h][-f ARG][-d ARG]
+"""
+            self.assertIn(expected, actual)
 
             makedirs.assert_called_once()
             context_check_application_initialize.assert_called_once()
@@ -345,11 +345,15 @@ class TestGitSynchronizer(TestCase):
             with self.assertRaises(SystemExit):
                 git_synchronizer = GitSynchronizer()
                 git_synchronizer.execute()
+                # noinspection PyUnresolvedReferences
+                context = git_synchronizer._GitSynchronizer__context
 
             # 検証
-            actual = stderr.getvalue().decode("utf-8")
-            expected = u"同期対象リポジトリファイルの読み込みに失敗しました。-> .*\n"
-            self.assertRegexpMatches(actual, expected)
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+StandardError: 同期対象リポジトリファイルの読み込みに失敗しました。-> {repo_file}
+""".format(repo_file=context.repo_file)
+            self.assertIn(expected, actual)
 
             makedirs.assert_called_once()
             context_check_application_initialize.assert_called_once()
@@ -417,9 +421,11 @@ class TestGitSynchronizer(TestCase):
                 git_synchronizer.execute()
 
             # 検証
-            actual = stderr.getvalue().decode("utf-8")
-            expected = u"リポジトリの同期に失敗しました。\n"
-            self.assertRegexpMatches(actual, expected)
+            actual = stdout.getvalue().decode("utf-8")
+            expected = u"""\
+StandardError: リポジトリの同期に失敗しました。
+"""
+            self.assertIn(expected, actual)
 
             makedirs.assert_called_once()
             context_check_application_initialize.assert_called_once()
