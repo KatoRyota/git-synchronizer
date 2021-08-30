@@ -275,9 +275,7 @@ class TestGitSynchronizer(TestCase):
             # 検証
             actual = stdout.getvalue().decode("utf-8")
             expected = u"""\
-OptParseError: 起動オプションのパースに失敗しました。
-
-Usage: python -m gitsynchronizer [-h][-f ARG][-d ARG]
+StandardError: 起動オプションのパースに失敗しました。
 """
             self.assertIn(expected, actual)
 

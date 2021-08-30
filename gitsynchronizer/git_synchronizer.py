@@ -9,7 +9,7 @@ import signal
 import sys
 import traceback
 from logging import Logger
-from optparse import OptionParser, OptParseError
+from optparse import OptionParser
 from subprocess import Popen
 
 from context.context import Context
@@ -137,7 +137,7 @@ class GitSynchronizer(object):
                 context.dst_dir = os.path.abspath(options.dst_dir)
 
             if not context.check_option_parse():
-                raise OptParseError(u"起動オプションのパースに失敗しました。")
+                raise StandardError(u"起動オプションのパースに失敗しました。")
 
             # ---- 同期対象リポジトリファイルの読み込み ----
             with open(context.repo_file, "rb") as f:
@@ -162,14 +162,7 @@ class GitSynchronizer(object):
 
             logger.info("[End] " + os.path.abspath(__file__))
 
-        except OptParseError:
-            logger.exception(u"起動オプションのパースに失敗しました。")
-            traceback.print_exc(file=sys.stdout)
-            print
-            option_parser.print_help()
-            sys.exit(1)
-
-        except BaseException:
+        except Exception:
             logger.exception(u"エラーが発生しました。")
             traceback.print_exc(file=sys.stdout)
             sys.exit(1)
